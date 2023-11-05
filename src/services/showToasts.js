@@ -1,13 +1,22 @@
-import { Toast } from "toastify-react-native";
+// import Toast from 'react-native-toast-message';
 
-export const showSuccess = (sucess) => {
-    Toast.success(sucess);
-}
+// export const showToastSuccess = (sucess) => {
+//   Toast.show({
+//     type: 'success',
+//     text1: sucess,
+//   });
+// };
 
-export const showInfo = (info) => {
-    Toast.info(info);
-}
+// export const showToastInfo = (info) => {
+//   Toast.show({
+//     type: 'info',
+//     text1: info,
+//   });
+// };
 
-export const showError = (error) => {
-    Toast.error(error);
-}
+// export const showToastError = (error) => {
+//   show({
+//     type: 'error',
+//     text1: error,
+//   });
+// };

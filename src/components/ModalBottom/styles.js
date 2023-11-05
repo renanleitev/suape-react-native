@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     marginTop: "100%",
     backgroundColor: corVerdePrincipal,
   },
+  keyboardVisible: {
+    marginTop: 0,
+  }
 });
 
 export default styles;

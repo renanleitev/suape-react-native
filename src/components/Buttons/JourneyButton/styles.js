@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: corAzulPrincipal,
     color: corBrancaPrincipal,
     fontSize: 20,
+    marginLeft: 10,
     paddingLeft: 5,
     paddingRight: 5,
     borderRadius: 10,
