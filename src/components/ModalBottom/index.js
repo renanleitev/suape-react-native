@@ -1,36 +1,26 @@
-import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Modal } from 'react-native';
 import styles from './styles';
 
 const ModalBottom = (props) => {
   const modalVisible = props.modalVisible;
   const setModalVisible = props.setModalVisible;
+  const children = props.children;
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-    >
-      <View
-        style={{
-          height: '50%',
-          marginTop: 'auto',
-          backgroundColor: 'blue',
-        }}
+    <View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.footer}>
-          <Text style={styles.headerText}>Pesquisar Empresas</Text>
-        </View>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <Text style={styles.addButtonText}>Fechar</Text>
+        <TouchableOpacity style={styles.modalContainer} onPress={() => setModalVisible(false)}>
+          <TouchableOpacity style={styles.modal} activeOpacity={1}>
+            {children}
+          </TouchableOpacity>
         </TouchableOpacity>
-      </View>
-    </Modal>
+      </Modal>
+    </View>
   );
 };
 
