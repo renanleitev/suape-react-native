@@ -8,6 +8,7 @@ import Sobre from './src/pages/Sobre';
 import Mapa from './src/pages/Mapa';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import Toast from 'react-native-toast-message';
 
 const stackScreenOptions = {
   headerStyle: {
@@ -43,6 +44,7 @@ export default function App() {
             component={Sobre}
           />
         </Stack.Navigator>
+        <Toast />
       </NavigationContainer>
     </Provider>
   );

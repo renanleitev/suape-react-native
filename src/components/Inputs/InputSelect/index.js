@@ -8,6 +8,7 @@ const InputSelect = (props) => {
   return (
     <SelectDropdown
       data={data}
+      disabled={data ? false : true}
       defaultButtonText={data[0]}
       defaultValue={data[0]}
       buttonStyle={styles.inputSelect}

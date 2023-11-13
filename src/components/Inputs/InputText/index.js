@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, TextInput} from 'react-native';
-// import { showToastError } from '../../../services/showToasts';
+import { showToastError } from '../../../services/showToasts';
 import { useDispatch } from 'react-redux';
 import { addJourney } from '../../../redux/slices/journeysSlice';
 import styles from './styles';
@@ -23,7 +23,7 @@ const InputText = (props) => {
     if (companyFound) {
       dispatch(addJourney(companyFound));
     } else {
-      // showToastError(errorMessage);
+      showToastError(errorMessage);
     }
   }
 
@@ -33,7 +33,7 @@ const InputText = (props) => {
     if (pointFound) {
       dispatch(addJourney(pointFound));
     } else {
-      // showToastError(errorMessage);
+      showToastError(errorMessage);
     }
   }
 

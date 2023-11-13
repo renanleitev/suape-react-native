@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: corBrancaPrincipal,
     borderRadius: 20,
-    padding: 35,
+    paddingBottom: 20,
     alignItems: 'center',
     shadowColor: corEscuraPrincipal,
     shadowOffset: {
@@ -47,15 +47,13 @@ const styles = StyleSheet.create({
   },
   itemText: {
     marginBottom: 20,
+    textAlign: 'center',
   },
   headerTitle: {
     backgroundColor: corVerdeSecundaria,
-    minWidth: '50%',
+    minWidth: '100%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    position: 'absolute',
-    paddingLeft: 75,
-    paddingRight: 75,
   },
   headerTitleText: {
     color: corBrancaPrincipal,
