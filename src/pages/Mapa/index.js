@@ -10,6 +10,7 @@ import InfoCompany from '../../components/Company/InfoCompany';
 const Mapa = () => {
   const [searchCompanyVisible, setSearchCompanyVisible] = useState(false);
   const [infoCompanyVisible, setInfoCompanyVisible] = useState(false);
+  const [historyCompanyVisible, setHistoryCompanyVisible] = useState(false);
 
   return (
     <>
@@ -26,7 +27,7 @@ const Mapa = () => {
       >
         <InfoCompany />
       </ModalBottom>
-      <HistoryButton setModalVisible={searchCompanyVisible} />
+      <HistoryButton setModalVisible={setHistoryCompanyVisible} />
       <InfoButton setModalVisible={setInfoCompanyVisible} />
       <SearchButton setModalVisible={setSearchCompanyVisible} />
     </>

@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     height: "100%",
-    marginTop: "100%",
+    marginTop: "110%",
     backgroundColor: corVerdePrincipal,
   },
   keyboardVisible: {
