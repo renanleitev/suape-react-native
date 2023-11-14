@@ -5,7 +5,7 @@ import AddButton from '../Buttons/AddButton';
 import RemoveButton from '../Buttons/RemoveButton';
 import JourneyButton from '../Buttons/JourneyButton';
 import GoButton from '../Buttons/GoButton';
-import Tabs from '../../Tabs';
+import TabsCompany from '../TabsCompany';
 import styles from './styles';
 import { sortArrayByName } from '../../../services/sortArrayByName';
 import { useState, useEffect } from 'react';
@@ -38,7 +38,7 @@ const SearchCompany = () => {
 
   return (
     <>
-      <Tabs setCompanies={setCompanies} setType={setType} />
+      <TabsCompany setCompanies={setCompanies} setType={setType} />
       <InputSelect data={sortedCompaniesName} setCompany={setCompany} type={type} />
       <View style={styles.container}>
         <AddButton company={company} companies={companies} />

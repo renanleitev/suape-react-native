@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { getCompanies } from '../../services/getCompanies';
-import { getPoints } from '../../services/getPoints';
+import { getCompanies } from '../../../services/getCompanies';
+import { getPoints } from '../../../services/getPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCompany } from '../../redux/slices/companiesSlice';
-import { addPoint } from '../../redux/slices/pointsSlice';
+import { addCompany } from '../../../redux/slices/companiesSlice';
+import { addPoint } from '../../../redux/slices/pointsSlice';
 import styles from './styles';
 
-const Tabs = (props) => {
+const TabsCompany = (props) => {
   const setCompanies = props.setCompanies;
   const setType = props.setType;
   const storedCompanies = useSelector((state) => state.companies);
@@ -74,4 +74,4 @@ const Tabs = (props) => {
   );
 };
 
-export default Tabs;
+export default TabsCompany;
