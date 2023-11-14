@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import 'react-native-gesture-handler';
+import React from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { corVerdeSecundaria, corBrancaPrincipal } from './src/config/colors';
 import Ajuda from './src/pages/Ajuda';
 import Sobre from './src/pages/Sobre';
@@ -21,29 +22,29 @@ const stackScreenOptions = {
 
 export default function App() {
   // Para realizar a navegação pelo aplicativo
-  const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
 
   return (
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar backgroundColor={corVerdeSecundaria} />
-        <Stack.Navigator>
-          <Stack.Screen
+        <Drawer.Navigator initialRouteName="Mapa">
+          <Drawer.Screen
             options={stackScreenOptions}
             name="Mapa"
             component={Mapa}
           />
-          <Stack.Screen
+          <Drawer.Screen
             options={stackScreenOptions}
             name="Ajuda"
             component={Ajuda}
           />
-          <Stack.Screen
+          <Drawer.Screen
             options={stackScreenOptions}
             name="Sobre"
             component={Sobre}
           />
-        </Stack.Navigator>
+        </Drawer.Navigator>
         <Toast />
       </NavigationContainer>
     </Provider>

@@ -1,12 +1,10 @@
 import { View, TouchableOpacity, Modal } from 'react-native';
-import { useKeyboardVisible } from '../../hooks/use-keyboard';
 import styles from './styles';
 
 const ModalBottom = (props) => {
   const modalVisible = props.modalVisible;
   const setModalVisible = props.setModalVisible;
   const children = props.children;
-  const keyboardVisible = useKeyboardVisible();
 
   return (
     <View>
@@ -21,7 +19,7 @@ const ModalBottom = (props) => {
           onPress={() => setModalVisible(false)}
         >
           <TouchableOpacity
-            style={[styles.modal, keyboardVisible && styles.keyboardVisible]}
+            style={[styles.modal]}
             activeOpacity={1}
           >
             {children}

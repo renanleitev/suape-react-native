@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import ShowJourney from '../../Journey/ShowJourney';
+import ShowJourney from '../../../Journey/ShowJourney';
 import styles from './styles';
 import { useSelector } from 'react-redux';
 
@@ -16,7 +16,6 @@ const JourneyButton = () => {
         <ShowJourney
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          journeys={journeys}
         />
       </View>
     </Pressable>

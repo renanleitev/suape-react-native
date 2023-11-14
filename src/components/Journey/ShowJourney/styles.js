@@ -24,31 +24,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     maxHeight: '50%',
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  flatList: {
-    flexGrow: 0,
-    marginTop: 20,
-  },
-  itemText: {
-    marginBottom: 20,
-    textAlign: 'center',
-  },
   headerTitle: {
     backgroundColor: corVerdeSecundaria,
     minWidth: '100%',
@@ -62,6 +37,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     fontSize: 16
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    gap: 10,
   }
 });
 

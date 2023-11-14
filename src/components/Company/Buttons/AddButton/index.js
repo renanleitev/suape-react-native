@@ -2,8 +2,8 @@ import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch } from 'react-redux';
 import styles from './styles';
-import { addJourney } from '../../../redux/slices/journeysSlice';
-import { showToastError } from '../../../services/showToasts';
+import { addJourney } from '../../../../redux/slices/journeysSlice';
+import { showToastError } from '../../../../services/showToasts';
 
 // https://oblador.github.io/react-native-vector-icons/
 

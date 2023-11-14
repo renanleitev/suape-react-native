@@ -20,10 +20,12 @@ const Mapa = () => {
       >
         <SearchCompany />
       </ModalBottom>
-      <InfoCompany
+      <ModalBottom
         modalVisible={infoCompanyVisible}
         setModalVisible={setInfoCompanyVisible}
-      />
+      >
+        <InfoCompany />
+      </ModalBottom>
       <HistoryButton setModalVisible={searchCompanyVisible} />
       <InfoButton setModalVisible={setInfoCompanyVisible} />
       <SearchButton setModalVisible={setSearchCompanyVisible} />

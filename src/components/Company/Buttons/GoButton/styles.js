@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal } from '../../../config/colors';
+import { corBrancaPrincipal } from "../../../../config/colors";
 
 const styles = StyleSheet.create({
   button: {

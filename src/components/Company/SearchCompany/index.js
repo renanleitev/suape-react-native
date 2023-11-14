@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import InputSelect from '../../Inputs/InputSelect';
-import AddButton from '../../Buttons/AddButton';
-import RemoveButton from '../../Buttons/RemoveButton';
-import JourneyButton from '../../Buttons/JourneyButton';
-import GoButton from '../../Buttons/GoButton';
+import AddButton from '../Buttons/AddButton';
+import RemoveButton from '../Buttons/RemoveButton';
+import JourneyButton from '../Buttons/JourneyButton';
+import GoButton from '../Buttons/GoButton';
 import Tabs from '../../Tabs';
 import styles from './styles';
 import { sortArrayByName } from '../../../services/sortArrayByName';

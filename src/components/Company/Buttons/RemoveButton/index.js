@@ -2,7 +2,7 @@ import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
-import { removeJourney } from '../../../redux/slices/journeysSlice';
+import { removeJourney } from '../../../../redux/slices/journeysSlice';
 
 // https://oblador.github.io/react-native-vector-icons/
 

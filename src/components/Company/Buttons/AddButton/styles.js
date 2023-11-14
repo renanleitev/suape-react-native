@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import {corVermelhaPrincipal, corBrancaPrincipal} from "../../../config/colors";
+import {corAzulPrincipal, corBrancaPrincipal} from "../../../../config/colors";
 
 const styles = StyleSheet.create({
     button: {
       padding: 15,
-      backgroundColor: corVermelhaPrincipal,
+      backgroundColor: corAzulPrincipal,
       borderRadius: 10,
       width: 60,
     },

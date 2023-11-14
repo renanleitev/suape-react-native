@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal, corAzulPrincipal } from '../../../config/colors';
+import { corBrancaPrincipal, corAzulPrincipal } from '../../../../config/colors';
 
 const styles = StyleSheet.create({
   container: {

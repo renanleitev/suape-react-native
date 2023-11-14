@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
-import { corEscuraPrincipal } from "../../../config/colors";
+import { corBrancaPrincipal } from "../../../../config/colors";
 
 const styles = StyleSheet.create({
     button: {
       backgroundColor: 'transparent',
+      marginRight: 20,
     },
     icon: {
-      color: corEscuraPrincipal,
+      color: corBrancaPrincipal,
     },
   });
 
