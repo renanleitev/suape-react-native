@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         width: "80%",
         marginLeft: "auto",
         marginRight: "auto",
+        marginTop: 20,
     }
 });
 

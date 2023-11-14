@@ -2,14 +2,18 @@ import SelectDropdown from 'react-native-select-dropdown';
 import styles from './styles';
 
 const InputSelect = (props) => {
-  const data = props.data || [];
+  const data = props.data;
   const setCompany = props.setCompany;
+  const type = props.type;
+  const placeholder = `Pesquisar ${type}...`;
 
   return (
     <SelectDropdown
       data={data}
+      search={true}
+      searchPlaceHolder={placeholder}
       disabled={data ? false : true}
-      defaultButtonText={data[0]}
+      defaultButtonText={placeholder}
       defaultValue={data[0]}
       buttonStyle={styles.inputSelect}
       onSelect={(companyName, index) => {

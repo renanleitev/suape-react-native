@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     color: corBrancaPrincipal,
     fontSize: 20,
     marginLeft: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
     borderRadius: 10,
   },
 });

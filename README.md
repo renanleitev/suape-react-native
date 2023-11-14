@@ -10,6 +10,10 @@ Projeto desenvolvido por alunos do curso de Análise e Desenvolvimento de Sistem
 
     npx expo start
 
+## Servidor remoto
+
+    npx expo start --tunnel
+
 ## Sobre o aplicativo
 
 Trata-se de um aplicativo web mobile desenvolvido para orientar visitantes e funcionários que trabalham no Porto de Suape, para que possam se localizar com maior facilidade e rapidez pelo porto. O aplicativo é construído com React Native.
