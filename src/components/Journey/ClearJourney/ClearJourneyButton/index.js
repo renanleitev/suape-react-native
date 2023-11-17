@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { Text, Pressable } from 'react-native';
-import ClearJourneyMessage from '../ClearJourneyMessage';
 import styles from './styles';
 
-const ClearJourneyButton = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+const ClearJourneyButton = (props) => {
+  const setModalVisible = props.setModalVisible;
 
   return (
     <Pressable
@@ -12,12 +10,6 @@ const ClearJourneyButton = () => {
       onPress={() => setModalVisible(true)}
     >
       <Text style={styles.textStyle}>Apagar</Text>
-      {modalVisible && (
-        <ClearJourneyMessage
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
-      )}
     </Pressable>
   );
 };

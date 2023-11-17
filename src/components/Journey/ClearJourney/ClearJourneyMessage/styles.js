@@ -55,6 +55,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  clearMessage: {
+    padding: 20,
+  },
 });
 
 export default styles;

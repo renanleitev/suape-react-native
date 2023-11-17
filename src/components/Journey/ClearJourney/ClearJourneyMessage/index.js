@@ -1,53 +1,33 @@
 import { useCallback } from 'react';
-import { View, Text, Pressable, Modal } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import CloseButton from '../../../Buttons/CloseButton';
-import ListJourney from '../../ListJourney';
+import { showToastSuccess } from '../../../../services/showToasts';
 import styles from './styles';
 
 const ClearJourneyMessage = (props) => {
-  const modalVisible = props.modalVisible;
   const setModalVisible = props.setModalVisible;
+  const clearJourneySuccess = "Itinerario apagado com sucesso";
+  const clearJourneyWarning = "Apagar itinerário? Essa ação é irreversível.";
 
   const clearJourney = useCallback(() => {
+    showToastSuccess(clearJourneySuccess);
+    setModalVisible(false);
     dispatch(emptyJourneys());
   }, []);
 
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
+    <>
+      <Text style={styles.clearMessage}>{clearJourneyWarning}</Text>
+      <View style={styles.buttonContainer}>
         <Pressable
-          style={styles.centeredView}
-          onPress={() => setModalVisible(!modalVisible)}
+          style={[styles.button, styles.buttonClear]}
+          onPress={clearJourney}
         >
-          <Pressable
-            style={styles.modalView}
-            onPress={() => setModalVisible(true)}
-          >
-            <View style={styles.headerTitle}>
-              <Text style={styles.headerTitleText}>Apagar Itinerario</Text>
-            </View>
-            <ListJourney />
-            <Text>Apagar itinerário? Essa ação é irreversível.</Text>
-            <View style={styles.buttonContainer}>
-              <Pressable
-                style={[styles.button, styles.buttonClear]}
-                onPress={clearJourney}
-              >
-                <Text style={styles.textStyle}>Apagar</Text>
-              </Pressable>
-              <CloseButton setModalVisible={setModalVisible} />
-            </View>
-          </Pressable>
+          <Text style={styles.textStyle}>Apagar</Text>
         </Pressable>
-      </Modal>
-    </View>
+        <CloseButton setModalVisible={setModalVisible} text={"Voltar"}/>
+      </View>
+    </>
   );
 };
 
