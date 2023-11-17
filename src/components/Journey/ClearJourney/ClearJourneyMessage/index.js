@@ -6,7 +6,7 @@ import styles from './styles';
 
 const ClearJourneyMessage = (props) => {
   const setModalVisible = props.setModalVisible;
-  const clearJourneySuccess = "Itinerario apagado com sucesso";
+  const clearJourneySuccess = "Itinerario apagado com sucesso.";
   const clearJourneyWarning = "Apagar itinerário? Essa ação é irreversível.";
 
   const clearJourney = useCallback(() => {
