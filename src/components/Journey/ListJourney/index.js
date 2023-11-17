@@ -5,7 +5,6 @@ import styles from './styles';
 const ListJourney = () => {
   const journeys = useSelector((state) => state.journeys) || [];
   const emptyJourneyMessage = 'Nenhum itinerário disponível.';
-
   return (
     <FlatList
       data={journeys}

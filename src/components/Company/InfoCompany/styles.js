@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     color: corBrancaPrincipal,
+    fontSize: 16,
   },
   headerTitle: {
     backgroundColor: corVerdeSecundaria,

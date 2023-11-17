@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import InputSelect from '../../Inputs/InputSelect';
 import AddButton from '../Buttons/AddButton';
@@ -8,40 +7,20 @@ import GoButton from '../Buttons/GoButton';
 import TabsCompany from '../TabsCompany';
 import styles from './styles';
 import { sortArrayByName } from '../../../services/sortArrayByName';
-import { useState, useEffect } from 'react';
-import { getCompanies } from '../../../services/getCompanies';
-import { addCompany } from '../../../redux/slices/companiesSlice';
+import { useState } from 'react';
 
 const SearchCompany = () => {
-  const storedCompanies = useSelector((state) => state.companies);
-  const [companies, setCompanies] = useState([]);
+  const [data, setData] = useState([]);
   const [type, setType] = useState('empresa');
-  const sortedCompaniesName = sortArrayByName(companies);
-  const [company, setCompany] = useState(sortedCompaniesName[0]);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      const companiesFetched = await getCompanies();
-      companiesFetched.forEach((element) => {
-        dispatch(addCompany(element));
-      });
-      setCompanies(companiesFetched);
-    };
-    if (!storedCompanies) {
-      fetchCompanies();
-    } else {
-      setCompanies(storedCompanies);
-    }
-  }, []);
+  const sortedDataName = sortArrayByName(data);
+  const [place, setPlace] = useState(sortedDataName[0]);
 
   return (
     <>
-      <TabsCompany setCompanies={setCompanies} setType={setType} />
-      <InputSelect data={sortedCompaniesName} setCompany={setCompany} type={type} />
+      <TabsCompany setData={setData} setType={setType} />
+      <InputSelect data={sortedDataName} setPlace={setPlace} type={type} />
       <View style={styles.container}>
-        <AddButton company={company} companies={companies} />
+        <AddButton place={place} data={data} type={type} />
         <RemoveButton />
         <JourneyButton />
       </View>

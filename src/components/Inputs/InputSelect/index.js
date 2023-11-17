@@ -1,11 +1,16 @@
 import SelectDropdown from 'react-native-select-dropdown';
+import { useEffect } from 'react';
 import styles from './styles';
 
 const InputSelect = (props) => {
   const data = props.data;
-  const setCompany = props.setCompany;
+  const setPlace = props.setPlace;
   const type = props.type;
   const placeholder = `Pesquisar ${type}...`;
+
+  useEffect(() => {
+    setPlace(data[0]);
+  }, [data]);
 
   return (
     <SelectDropdown
@@ -16,8 +21,8 @@ const InputSelect = (props) => {
       defaultButtonText={placeholder}
       defaultValue={data[0]}
       buttonStyle={styles.inputSelect}
-      onSelect={(companyName, index) => {
-        setCompany(companyName);
+      onSelect={(placeName, index) => {
+        setPlace(placeName);
       }}
       buttonTextAfterSelection={(selectedItem, index) => {
         return selectedItem;

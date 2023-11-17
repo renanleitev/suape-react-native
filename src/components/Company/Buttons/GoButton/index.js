@@ -15,7 +15,7 @@ const GoButton = () => {
     } else {
       showToastError(journeyError);
     }
-  }, []);
+  }, [journeys]);
 
   return (
     <Pressable style={styles.button} onPress={handleSearch}>

@@ -15,7 +15,7 @@ const originalCoordinate = { latitude: latitude, longitude: longitude };
 // https://instamobile.io/react-native-tutorials/react-native-draw-directions-map/
 
 const Map = () => {
-  const coordinates = useSelector((state) => state.coordinates);
+  const coordinates = useSelector((state) => state.coordinates) || [];
   coordinates.unshift(originalCoordinate);
 
   return (

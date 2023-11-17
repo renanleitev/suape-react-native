@@ -6,7 +6,7 @@ import PreviousButton from '../Buttons/PreviousButton';
 import styles from './styles';
 
 const InfoCompany = () => {
-  const storedCompanies = useSelector((state) => state.companies) || [];
+  const places = useSelector((state) => state.journeys) || [];
   const emptyMessage = 'Nenhuma informação disponível.';
   const [index, setIndex] = useState(0);
 
@@ -18,17 +18,17 @@ const InfoCompany = () => {
         <NextButton index={index} setIndex={setIndex} />
       </View>
       <View style={styles.infoCompany}>
-        {storedCompanies[index] ? (
+        {places[index] ? (
           <>
-            <Text style={styles.itemText}>{storedCompanies[index]?.Nome}</Text>
+            <Text style={styles.itemText}>{places[index]?.Nome}</Text>
             <Text style={styles.itemText}>
-              {storedCompanies[index]?.Atividade}
+              Atividade: {places[index]?.Atividade}
             </Text>
             <Text style={styles.itemText}>
-              {storedCompanies[index]?.Endereço}
+              Endereço: {places[index]?.Endereço}
             </Text>
             <Text style={styles.itemText}>
-              {storedCompanies[index]?.Contato}
+              Contato: {places[index]?.Contato}
             </Text>
           </>
         ) : (

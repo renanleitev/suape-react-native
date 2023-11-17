@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { getCompanies } from '../../../services/getCompanies';
 import { getPoints } from '../../../services/getPoints';
-import { useDispatch, useSelector } from 'react-redux';
-import { addCompany } from '../../../redux/slices/companiesSlice';
-import { addPoint } from '../../../redux/slices/pointsSlice';
+import { useDispatch } from 'react-redux';
+import { addCompany, emptyCompanies } from '../../../redux/slices/companiesSlice';
+import { addPoint, emptyPoints } from '../../../redux/slices/pointsSlice';
 import styles from './styles';
 
 const TabsCompany = (props) => {
-  const setCompanies = props.setCompanies;
   const setType = props.setType;
-  const storedCompanies = useSelector((state) => state.companies);
-  const storedPoints = useSelector((state) => state.points);
+  const setData = props.setData;
   const [companySelected, setCompanySelected] = useState(true);
   const [pointSelected, setPointSelected] = useState(false);
 
@@ -19,23 +17,25 @@ const TabsCompany = (props) => {
 
   useEffect(() => {
     const fetchCompanies = async () => {
+      dispatch(emptyCompanies());
       const companiesFetched = await getCompanies();
       companiesFetched.forEach((element) => {
         dispatch(addCompany(element));
       });
-      setCompanies(companiesFetched);
+      setData(companiesFetched);
     };
     const fetchPoints = async () => {
+      dispatch(emptyPoints());
       const pointsFetched = await getPoints();
       pointsFetched.forEach((element) => {
         dispatch(addPoint(element));
       });
-      setCompanies(pointsFetched);
+      setData(pointsFetched);
     };
-    if (companySelected && !storedCompanies) {
+    if (companySelected) {
       fetchCompanies();
     }
-    if (pointSelected && !storedPoints) {
+    if (pointSelected) {
       fetchPoints();
     }
   }, [companySelected, pointSelected]);
