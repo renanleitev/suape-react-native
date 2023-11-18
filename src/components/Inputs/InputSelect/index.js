@@ -1,5 +1,4 @@
 import SelectDropdown from 'react-native-select-dropdown';
-import { useEffect } from 'react';
 import styles from './styles';
 
 const InputSelect = (props) => {
@@ -7,10 +6,6 @@ const InputSelect = (props) => {
   const setPlace = props.setPlace;
   const type = props.type;
   const placeholder = `Pesquisar ${type}...`;
-
-  useEffect(() => {
-    setPlace(data[0]);
-  }, [data]);
 
   return (
     <SelectDropdown

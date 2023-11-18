@@ -13,11 +13,12 @@ const AddButton = (props) => {
   const type = props.type;
   const data = props.data;
   const addSuccess = `${capitalizeFirstLetter(type)} adicionado(a) com sucesso.`;
-  const addError = "Não foi possível adicionar.";
+  const addError = `Não foi possível adicionar ${type}.`;
 
   const dispatch = useDispatch();
 
   const addPlace = () => {
+    console.log(place)
       if (place) {
         const placeFound = data.find(p => p.Nome === place);
         dispatch(addJourney(placeFound));

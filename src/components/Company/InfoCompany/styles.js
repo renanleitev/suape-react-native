@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal, corVerdeSecundaria } from '../../../config/colors';
+import { corBrancaPrincipal, corVerdeSecundaria, corAzulPrincipal } from '../../../config/colors';
 
 const styles = StyleSheet.create({
   itemText: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
     textAlign: 'center',
     color: corBrancaPrincipal,
     fontSize: 16,
+  },
+  linkText: {
+    color: corAzulPrincipal,
   },
   headerTitle: {
     backgroundColor: corVerdeSecundaria,

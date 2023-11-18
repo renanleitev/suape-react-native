@@ -7,9 +7,12 @@ export const useContactValidation = (listContact) => {
       if (
         contact.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)
       ) {
-        finalListContact.append(`mailto:${contact}`);
-      } else {
-        finalListContact.append(`tel:${contact}`);
+        finalListContact.push(`mailto:${contact}`);
+      } else if (contact.includes("www")) {
+        finalListContact.push(`https://${contact}`);
+      }
+      else {
+        finalListContact.push(`tel:${contact}`);
       }
     });
   }
