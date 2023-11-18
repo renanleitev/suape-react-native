@@ -10,7 +10,7 @@ const ClearJourneyButton = (props) => {
   const clearJourneyError = 'O itinerário está vazio.';
 
   const handleClearJourney = useCallback(() => {
-    if (journeys) {
+    if (journeys.length > 0) {
       setModalVisible(true);
     } else {
       showToastError(clearJourneyError);

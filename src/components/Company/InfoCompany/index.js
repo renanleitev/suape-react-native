@@ -3,12 +3,19 @@ import { useSelector } from 'react-redux';
 import { View, Text } from 'react-native';
 import NextButton from '../Buttons/NextButton';
 import PreviousButton from '../Buttons/PreviousButton';
+import { Linking } from 'react-native';
+import { useContactValidation } from '../../../hooks/use-contact';
 import styles from './styles';
 
 const InfoCompany = () => {
-  const places = useSelector((state) => state.journeys) || [];
+  const journeys = useSelector((state) => state.journeys) || [];
   const emptyMessage = 'Nenhuma informação disponível.';
   const [index, setIndex] = useState(0);
+  const place = journeys[index];
+  const originalContacts = place?.Contato.split(',');
+  const convertedContacts = useContactValidation(originalContacts);
+  const activity = place?.Atividade;
+  const address = place?.Endereço;
 
   return (
     <>
@@ -18,18 +25,24 @@ const InfoCompany = () => {
         <NextButton index={index} setIndex={setIndex} />
       </View>
       <View style={styles.infoCompany}>
-        {places[index] ? (
+        {place ? (
           <>
-            <Text style={styles.itemText}>{places[index]?.Nome}</Text>
+            <Text style={styles.itemText}>{place?.Nome}</Text>
             <Text style={styles.itemText}>
-              Atividade: {places[index]?.Atividade}
+              Atividade: {activity}
             </Text>
             <Text style={styles.itemText}>
-              Endereço: {places[index]?.Endereço}
+              Endereço: {address}
             </Text>
-            <Text style={styles.itemText}>
-              Contato: {places[index]?.Contato}
-            </Text>
+            <Text>Contato:</Text>
+            {convertedContacts.forEach((contact, index) => {
+              <Text
+                style={styles.itemText}
+                onPress={() => Linking.openURL(contact)}
+              >
+                {originalContacts[index]}
+              </Text>;
+            })}
           </>
         ) : (
           <Text style={styles.itemText}>{emptyMessage}</Text>

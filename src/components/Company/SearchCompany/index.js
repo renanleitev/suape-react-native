@@ -6,13 +6,13 @@ import JourneyButton from '../Buttons/JourneyButton';
 import GoButton from '../Buttons/GoButton';
 import TabsCompany from '../TabsCompany';
 import styles from './styles';
-import { sortArrayByName } from '../../../services/sortArrayByName';
+import { useSortArrayByName } from '../../../hooks/use-sort-array';
 import { useState } from 'react';
 
 const SearchCompany = () => {
   const [data, setData] = useState([]);
   const [type, setType] = useState('empresa');
-  const sortedDataName = sortArrayByName(data);
+  const sortedDataName = useSortArrayByName(data);
   const [place, setPlace] = useState(sortedDataName[0]);
 
   return (

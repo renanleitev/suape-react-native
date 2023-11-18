@@ -1,4 +1,4 @@
-export const sortArrayByName = (array) => {
+export const useSortArrayByName = (array) => {
     const originalArray = [];
     array.forEach(element => {
         originalArray.push(element?.Nome);

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import styles from './styles';
 import { addJourney } from '../../../../redux/slices/journeysSlice';
 import { showToastSuccess, showToastError } from '../../../../services/showToasts';
+import { capitalizeFirstLetter } from '../../../../hooks/use-letters';
 
 // https://oblador.github.io/react-native-vector-icons/
 
@@ -11,7 +12,7 @@ const AddButton = (props) => {
   const place = props.place;
   const type = props.type;
   const data = props.data;
-  const addSuccess = `${type} adicionado(a) com sucesso.`;
+  const addSuccess = `${capitalizeFirstLetter(type)} adicionado(a) com sucesso.`;
   const addError = "Não foi possível adicionar.";
 
   const dispatch = useDispatch();
