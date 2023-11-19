@@ -14,7 +14,7 @@ const Login = ({ navigation }) => {
     Password: '',
   });
   const loginSuccess = "Usuário autenticado com sucesso. Redirecionando...";
-  const loginError = "Nome de usuário e/ou senha incorretos";
+  const loginError = "Email e/ou senha incorreto(s)";
   const onPressLogin = async () => {
     const response = await loginUser(user);
     try {
@@ -41,7 +41,7 @@ const Login = ({ navigation }) => {
       <Text style={styles.title}>Login</Text>
       <ScrollView>
         <InputText
-          placeholder="Username"
+          placeholder="Email"
           onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText

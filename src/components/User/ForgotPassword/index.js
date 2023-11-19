@@ -14,14 +14,15 @@ const ForgotPassword = ({ navigation }) => {
     RepeatPassword: '',
   });
 
-  const onRedefinePassword = () => {
+  const onRedefinePassword = async () => {
     const isEmailValid = useEmailValidation(user.email);
     const isPasswordValid = usePasswordValidation(
-      user.password,
-      user.repeatPassword
+      user.Password,
+      user.RepeatPassword
     );
     if (isEmailValid && isPasswordValid) {
-      showToastSuccess('Senha redefinida com sucesso.');
+      await patchUser(user);
+      showToastSuccess('Senha redefinida com sucesso. Por favor, faça o login');
       navigation.navigate('Login');
     }
   };

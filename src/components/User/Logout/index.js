@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { logout } from '../../../redux/slices/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   text: {
     color: corBrancaPrincipal,
     alignSelf: 'center',
-    fontSize: 30,
+    fontSize: 20,
   }
 });
 
