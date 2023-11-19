@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import InputText from '../../Inputs/InputText';
+import { loginUser } from '../../../services/loginUser';
+import { showToastSuccess, showToastError } from '../../../services/showToasts';
+import { login } from '../../../redux/slices/usersSlice';
+import { useDispatch } from 'react-redux';
 import styles from './styles';
 
 const Login = ({ navigation }) => {
-  const onPressLogin = () => {
-    // Do something about login operation
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    Email: '',
+    Password: '',
+  });
+  const loginSuccess = "Usuário autenticado com sucesso. Redirecionando...";
+  const loginError = "Nome de usuário e/ou senha incorretos";
+  const onPressLogin = async () => {
+    const response = await loginUser(user);
+    try {
+      if (response.Email === user.Email && response.Password === user.Password) {
+        navigation.navigate('Mapa');
+        showToastSuccess(loginSuccess);
+        dispatch(login(response));
+      } else {
+        showToastError(loginError);
+      }
+    } catch (e) {
+      showToastError(loginError);
+    }
   };
   const onPressForgotPassword = () => {
     navigation.navigate('Redefinir senha');
@@ -13,23 +35,19 @@ const Login = ({ navigation }) => {
   const onPressSignUp = () => {
     navigation.navigate('Cadastrar');
   };
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <ScrollView>
         <InputText
-          placeholder="Email"
-          onChangeText={(text) => setUser({ ...user, email: text })}
+          placeholder="Username"
+          onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText
           placeholder="Senha"
           secureTextEntry={true}
-          onChangeText={(text) => setUser({ ...user, password: text })}
+          onChangeText={(text) => setUser({ ...user, Password: text })}
         />
         <TouchableOpacity onPress={onPressForgotPassword}>
           <Text style={styles.text}>Esqueceu a senha?</Text>

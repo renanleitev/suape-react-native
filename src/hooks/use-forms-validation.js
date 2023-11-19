@@ -1,4 +1,4 @@
-import { showToastSuccess, showToastError } from "../services/showToasts";
+import { showToastError } from "../services/showToasts";
 
 export const useEmailValidation = (email) => {
   if (!email || email.length === 0) {
@@ -30,7 +30,7 @@ export const usePasswordValidation = (password, repeatPassword) => {
     password.length < minCharacter ||
     repeatPassword.length < minCharacter
   ) {
-    showToastError(`Senhas deve ter mais de ${minCharacter} caracteres`);
+    showToastError(`Senhas devem ter mais de ${minCharacter} caracteres`);
     return false;
   }
   return true;

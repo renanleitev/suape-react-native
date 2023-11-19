@@ -2,28 +2,49 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { useEmailValidation } from '../../../hooks/use-forms-validation';
 import { usePasswordValidation } from '../../../hooks/use-forms-validation';
-import { showToastSuccess } from '../../../services/showToasts';
+import { showToastError, showToastSuccess } from '../../../services/showToasts';
 import InputText from '../../Inputs/InputText';
+import { useDispatch } from 'react-redux';
+import { postUser } from '../../../services/postUser';
+import { login } from '../../../redux/slices/usersSlice';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import setAdmin from '../../../services/setAdmin';
 import styles from './styles';
 
 const SignUp = ({ navigation }) => {
+  const id = uuidv4();
   const [user, setUser] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
+    id: id,
+    Name: '',
+    Username: '',
+    Email: '',
+    Password: '',
+    RepeatPassword: '',
+    Role: 'USER',
+    Journey: [],
   });
+  const signUpSucesss = 'Cadastro bem sucedido. Redirecionando...';
+  const signUpError = 'Erro durante o cadastro. Por favor, tente novamente';
 
-  const onPressSignUp = () => {
-    const isEmailValid = useEmailValidation(user.email);
+  const dispatch = useDispatch();
+
+  const onPressSignUp = async () => {
+    const isEmailValid = useEmailValidation(user.Email);
     const isPasswordValid = usePasswordValidation(
-      user.password,
-      user.repeatPassword
+      user.Password,
+      user.RepeatPassword
     );
     if (isEmailValid && isPasswordValid) {
-      showToastSuccess('Autenticação bem sucedida');
-      navigation.navigate('Mapa');
+      const finalUser = setAdmin(user);
+      const response = await postUser(finalUser);
+      try {
+        showToastSuccess(signUpSucesss);
+        dispatch(login(response));
+        navigation.navigate('Mapa');
+      } catch (e) {
+        showToastError(signUpError);
+      }
     }
   };
   const onPressLogin = () => {
@@ -36,25 +57,25 @@ const SignUp = ({ navigation }) => {
       <ScrollView>
         <InputText
           placeholder="Nome"
-          onChangeText={(text) => setUser({ ...user, name: text })}
+          onChangeText={(text) => setUser({ ...user, Name: text })}
         />
         <InputText
           placeholder="Username"
-          onChangeText={(text) => setUser({ ...user, username: text })}
+          onChangeText={(text) => setUser({ ...user, Username: text })}
         />
         <InputText
           placeholder="Email"
-          onChangeText={(text) => setUser({ ...user, email: text })}
+          onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText
           placeholder="Senha"
           secureTextEntry={true}
-          onChangeText={(text) => setUser({ ...user, password: text })}
+          onChangeText={(text) => setUser({ ...user, Password: text })}
         />
         <InputText
           placeholder="Repetir senha"
           secureTextEntry={true}
-          onChangeText={(text) => setUser({ ...user, repeatPassword: text })}
+          onChangeText={(text) => setUser({ ...user, RepeatPassword: text })}
         />
         <TouchableOpacity onPress={onPressSignUp} style={styles.signUpBtn}>
           <Text style={styles.text}>CADASTRAR</Text>

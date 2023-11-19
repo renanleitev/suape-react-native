@@ -1,8 +1,8 @@
-import axios from "axios";
-
-const url = `https://api-suape.onrender.com/ponto/`;
+import axios from 'axios';
+import { baseUrl } from '../config/api';
 
 export const getPoints = async () => {
+  const url = `${baseUrl}/ponto/`;
   try {
     const response = await axios.get(url);
     return response.data;

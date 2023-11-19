@@ -4,20 +4,23 @@ const usersSlice = createSlice({
   name: 'users',
   initialState: [],
   reducers: {
-    addUser(state, action) {
+    login(state, action) {
       state.push({
         id: action.payload.id,
-        Nome: action.payload.Nome,
+        Name: action.payload.Name,
         Username: action.payload.Username,
         Email: action.payload.Email,
-        
+        Password: action.payload.Password,
+        Role: action.payload.Role,
+        Journey: action.payload.Journey,
+        isLoggedIn: true
       });
     },
-    emptyUsers(state) {
+    logout(state) {
       state.length = 0;
     },
   },
 });
 
-export const { addCompany, emptyCompanies } = usersSlice.actions;
+export const { login, logout} = usersSlice.actions;
 export default usersSlice.reducer;

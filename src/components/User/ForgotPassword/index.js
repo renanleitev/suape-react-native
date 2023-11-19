@@ -4,15 +4,14 @@ import { useEmailValidation } from '../../../hooks/use-forms-validation';
 import { usePasswordValidation } from '../../../hooks/use-forms-validation';
 import { showToastSuccess } from '../../../services/showToasts';
 import InputText from '../../Inputs/InputText';
+import { patchUser } from '../../../services/patchUser';
 import styles from './styles';
 
 const ForgotPassword = ({ navigation }) => {
   const [user, setUser] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
+    Email: '',
+    Password: '',
+    RepeatPassword: '',
   });
 
   const onRedefinePassword = () => {

@@ -1,37 +1,24 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StatusBar} from 'react-native';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator, DrawerToggleButton  } from '@react-navigation/drawer';
-import { corVerdeSecundaria, corBrancaPrincipal } from './src/config/colors';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { corVerdeSecundaria } from './src/config/colors';
 import Ajuda from './src/pages/Ajuda';
 import Sobre from './src/pages/Sobre';
 import Mapa from './src/pages/Mapa';
+import Usuario from './src/pages/Usuario';
 import Login from './src/components/User/Login';
 import SignUp from './src/components/User/SignUp';
+import Logout from './src/components/User/Logout';
 import ForgotPassword from './src/components/User/ForgotPassword';
+import CustomDrawer from './src/components/CustomDrawer';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import Toast from 'react-native-toast-message';
-import CustomDrawer from './CustomDrawer';
+import stackScreenOptions from './stackScreenOptions';
 
 // https://reactnavigation.org/docs/drawer-navigator/
-
-const stackScreenOptions = {
-  // https://stackoverflow.com/questions/68878108/how-to-set-react-native-drawer-header-icon-hamburger-to-the-right-side
-  drawerPosition: 'right',
-  headerLeft: false,
-  headerRight: () => <DrawerToggleButton tintColor={corBrancaPrincipal}/>,
-  drawerStyle: {
-    width: 240,
-  },
-  headerStyle: {
-    backgroundColor: corVerdeSecundaria,
-  },
-  headerTitleStyle: {
-    color: corBrancaPrincipal,
-  },
-};
 
 export default function App() {
   // Para realizar a navegação pelo aplicativo
@@ -41,7 +28,10 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar backgroundColor={corVerdeSecundaria} />
-        <Drawer.Navigator initialRouteName="Mapa" drawerContent={(props) => <CustomDrawer {...props}/>}>
+        <Drawer.Navigator
+          initialRouteName="Mapa"
+          drawerContent={(props) => <CustomDrawer {...props} />}
+        >
           <Drawer.Screen
             options={stackScreenOptions}
             name="Mapa"
@@ -49,8 +39,8 @@ export default function App() {
           />
           <Drawer.Screen
             options={stackScreenOptions}
-            name="Login"
-            component={Login}
+            name="Login/Logout"
+            component={Usuario}
           />
           <Drawer.Screen
             options={stackScreenOptions}

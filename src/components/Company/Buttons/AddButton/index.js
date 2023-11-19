@@ -18,7 +18,6 @@ const AddButton = (props) => {
   const dispatch = useDispatch();
 
   const addPlace = () => {
-    console.log(place)
       if (place) {
         const placeFound = data.find(p => p.Nome === place);
         dispatch(addJourney(placeFound));
