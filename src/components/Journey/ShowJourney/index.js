@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { View, Text, Pressable, Modal } from 'react-native';
 import styles from './styles';
-import ClearJourneyButton from '../ClearJourney/ClearJourneyButton';
-import CloseButton from '../../Buttons/CloseButton';
-import ListJourney from '../ListJourney';
-import ClearJourneyMessage from '../ClearJourney/ClearJourneyMessage';
+import ClearJourneyButton from './ClearJourney/ClearJourneyButton';
+import ClearJourneyMessage from './ClearJourney/ClearJourneyMessage';
+import ActiveJourney from './ActiveJourney';
+import SaveJourneyButton from './SaveJourneyButton';
 
 const ShowJourney = (props) => {
   const modalVisible = props.modalVisible;
@@ -37,10 +37,10 @@ const ShowJourney = (props) => {
               <ClearJourneyMessage setModalVisible={setOpenClearJourney} />
             ) : (
               <>
-                <ListJourney />
+                <ActiveJourney />
                 <View style={styles.buttonContainer}>
+                  <SaveJourneyButton/>
                   <ClearJourneyButton setModalVisible={setOpenClearJourney} />
-                  <CloseButton setModalVisible={setModalVisible} />
                 </View>
               </>
             )}

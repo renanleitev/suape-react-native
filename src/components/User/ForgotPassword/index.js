@@ -4,7 +4,7 @@ import { useEmailValidation } from '../../../hooks/use-forms-validation';
 import { usePasswordValidation } from '../../../hooks/use-forms-validation';
 import { showToastSuccess } from '../../../services/showToasts';
 import InputText from '../../Inputs/InputText';
-import { patchUser } from '../../../services/patchUser';
+import { patchForgetPassword } from '../../../services/patchForgetPassword';
 import styles from './styles';
 
 const ForgotPassword = ({ navigation }) => {
@@ -14,15 +14,18 @@ const ForgotPassword = ({ navigation }) => {
     RepeatPassword: '',
   });
 
+  const redefineSucess =
+    'Senha redefinida com sucesso. Por favor, faça o login';
+
   const onRedefinePassword = async () => {
-    const isEmailValid = useEmailValidation(user.email);
+    const isEmailValid = useEmailValidation(user.Email);
     const isPasswordValid = usePasswordValidation(
       user.Password,
       user.RepeatPassword
     );
     if (isEmailValid && isPasswordValid) {
-      await patchUser(user);
-      showToastSuccess('Senha redefinida com sucesso. Por favor, faça o login');
+      await patchForgetPassword(user);
+      showToastSuccess(redefineSucess);
       navigation.navigate('Login');
     }
   };

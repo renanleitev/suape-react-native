@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 40,
   },
-  logoutBtn: {
-    width: '80%',
+  deleteBtn: {
+    width: '100%',
     backgroundColor: corVermelhaPrincipal,
     borderRadius: 25,
     height: 50,
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
     marginBottom: 10,
+    padding: 10
   },
   text: {
     color: corBrancaPrincipal,

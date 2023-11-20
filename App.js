@@ -7,10 +7,8 @@ import { corVerdeSecundaria } from './src/config/colors';
 import Ajuda from './src/pages/Ajuda';
 import Sobre from './src/pages/Sobre';
 import Mapa from './src/pages/Mapa';
-import Usuario from './src/pages/Usuario';
-import Login from './src/components/User/Login';
-import SignUp from './src/components/User/SignUp';
-import Logout from './src/components/User/Logout';
+import LoginLogout from './src/pages/LoginLogout';
+import CadastrarApagar from './src/pages/CadastrarApagar';
 import ForgotPassword from './src/components/User/ForgotPassword';
 import CustomDrawer from './src/components/CustomDrawer';
 import { Provider } from 'react-redux';
@@ -40,12 +38,12 @@ export default function App() {
           <Drawer.Screen
             options={stackScreenOptions}
             name="Login/Logout"
-            component={Usuario}
+            component={LoginLogout}
           />
           <Drawer.Screen
             options={stackScreenOptions}
-            name="Cadastrar"
-            component={SignUp}
+            name="Cadastrar/Apagar conta"
+            component={CadastrarApagar}
           />
           <Drawer.Screen
             options={stackScreenOptions}
@@ -63,7 +61,7 @@ export default function App() {
             component={Sobre}
           />
         </Drawer.Navigator>
-        <Toast />
+        <Toast topOffset={60}/>
       </NavigationContainer>
     </Provider>
   );

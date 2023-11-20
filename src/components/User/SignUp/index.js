@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { useEmailValidation } from '../../../hooks/use-forms-validation';
 import { usePasswordValidation } from '../../../hooks/use-forms-validation';
@@ -7,15 +7,12 @@ import InputText from '../../Inputs/InputText';
 import { useDispatch } from 'react-redux';
 import { postUser } from '../../../services/postUser';
 import { login } from '../../../redux/slices/usersSlice';
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
 import setAdmin from '../../../services/setAdmin';
 import styles from './styles';
 
 const SignUp = ({ navigation }) => {
-  const id = uuidv4();
   const [user, setUser] = useState({
-    id: id,
+    id: Date.now(),
     Name: '',
     Username: '',
     Email: '',
@@ -29,7 +26,7 @@ const SignUp = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const onPressSignUp = async () => {
+  const onPressSignUp = useCallback(async () => {
     const isEmailValid = useEmailValidation(user.Email);
     const isPasswordValid = usePasswordValidation(
       user.Password,
@@ -46,7 +43,7 @@ const SignUp = ({ navigation }) => {
         showToastError(signUpError);
       }
     }
-  };
+  });
   const onPressLogin = () => {
     navigation.navigate('Login');
   };

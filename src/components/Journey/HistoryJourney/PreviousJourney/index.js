@@ -2,12 +2,14 @@ import { Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { useSelector } from 'react-redux';
 import styles from './styles';
 
-const ListJourney = () => {
-  const journeys = useSelector((state) => state.journeys) || [];
-  const emptyJourneyMessage = 'Nenhum itinerário disponível.';
+const PreviousJourney = () => {
+  const users = useSelector((state) => state.users) || [];
+  const user = users[0];
+  const journey = user?.Journey;
+  const emptyJourneyMessage = 'Nenhum histórico de itinerário disponível.';
   return (
     <FlatList
-      data={journeys}
+      data={journey}
       renderItem={({ item }) => (
         <TouchableWithoutFeedback onPress={() => {}}>
           <Text style={styles.itemText}>{item.Nome}</Text>
@@ -22,4 +24,4 @@ const ListJourney = () => {
   );
 };
 
-export default ListJourney;
+export default PreviousJourney;

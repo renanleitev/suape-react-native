@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Text, Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
-import { showToastError } from '../../../../services/showToasts';
+import { showToastError } from '../../../../../services/showToasts';
 import styles from './styles';
 
 const ClearJourneyButton = (props) => {

@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import CloseButton from '../../../Buttons/CloseButton';
-import { showToastSuccess } from '../../../../services/showToasts';
+import CloseButton from '../../../../Buttons/CloseButton';
+import { showToastSuccess } from '../../../../../services/showToasts';
 import { useDispatch } from 'react-redux';
-import { emptyJourneys } from '../../../../redux/slices/journeysSlice';
+import { emptyJourneys } from '../../../../../redux/slices/journeysSlice';
 import styles from './styles';
 
 const ClearJourneyMessage = (props) => {

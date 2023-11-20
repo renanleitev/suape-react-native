@@ -2,7 +2,7 @@ import Login from "../../components/User/Login";
 import Logout from "../../components/User/Logout";
 import { useSelector } from "react-redux";
 
-const Usuario = ({ navigation }) => {
+const LoginLogout = ({ navigation }) => {
     const users = useSelector(state => state.users) || [];
     const user = users[0];
     if (user?.isLoggedIn) {
@@ -11,4 +11,4 @@ const Usuario = ({ navigation }) => {
     return <Login navigation={navigation}/>;
 }
 
-export default Usuario;
+export default LoginLogout;

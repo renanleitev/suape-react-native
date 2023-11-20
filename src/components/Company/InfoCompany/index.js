@@ -11,7 +11,7 @@ const InfoCompany = () => {
   const emptyMessage = 'Nenhuma informação disponível.';
   const [index, setIndex] = useState(0);
   const place = journeys[index];
-  const contacts = place?.Contato.replace('/', ',');
+  const contacts = place?.Contato.replace('/', ',') || "";
   const originalContacts = contacts.split(',');
   const convertedContacts = useContactValidation(originalContacts);
   const activity = place?.Atividade;

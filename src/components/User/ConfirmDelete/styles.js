@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal, corEscuraPrincipal, corVerdeSecundaria, corVermelhaPrincipal } from '../../../../config/colors';
+import { corBrancaPrincipal, corEscuraPrincipal, corVerdeSecundaria, corVermelhaPrincipal } from '../../../config/colors';
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 200,
+    margin: 20,
     backgroundColor: corBrancaPrincipal,
     borderRadius: 20,
     paddingBottom: 20,
@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     fontSize: 16
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    gap: 10,
   },
   buttonContainer: {
     flexDirection: 'row',

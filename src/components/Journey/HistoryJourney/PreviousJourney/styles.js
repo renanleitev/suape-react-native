@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal, corEscuraPrincipal, corVerdeSecundaria } from '../../../config/colors';
 
 const styles = StyleSheet.create({
   flatList: {

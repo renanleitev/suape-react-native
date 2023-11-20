@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { corBrancaPrincipal, corVermelhaPrincipal } from '../../../../config/colors';
+import { corBrancaPrincipal, corAzulPrincipal } from '../../../../config/colors';
 
 const styles = StyleSheet.create({
   button: {
@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonClear: {
-    backgroundColor: corVermelhaPrincipal,
+  buttonSave: {
+    backgroundColor: corAzulPrincipal,
   },
   textStyle: {
     color: corBrancaPrincipal,
