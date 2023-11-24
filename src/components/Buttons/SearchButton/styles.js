@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
       backgroundColor: corVerdeSecundaria,
       borderRadius: 50,
       position: 'absolute',
-      bottom: 30,
+      bottom: 70,
       right: 10,
     },
     icon: {

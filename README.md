@@ -24,6 +24,15 @@ Possui um mapa central, que exibe a localização atual do usuário. Após, o us
 
 É possível obter informações como o trajeto, a distância, locais próximos e aumentar/diminuir o zoom do mapa.
 
+## Para construir as rotas no mapa
+
+Para construir as rotas no mapa, é necessário seguir os seguintes passos:
+
+1. Criar um arquivo chamado "apiKey.js" na raiz do projeto;
+2. Inserir o código abaixo (trocar pela sua chave de API do Google Maps):
+   
+        export const GOOGLE_MAPS_APIKEY = "SUA API DO GOOGLE MAPS";
+
 ## Ferramentas
 
 1. React Native

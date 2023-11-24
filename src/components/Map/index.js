@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { View, Text } from 'react-native';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import styles from './styles';
 import * as Location from 'expo-location';
-import { corAzulPrincipal } from '../../config/colors';
+import { routeColorsArray } from '../../config/colors';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAPS_APIKEY } from '../../../apiKey';
 
@@ -23,6 +23,7 @@ const Map = () => {
   const [initialCoordinate, setInitialCoordinate] =
     useState(originalCoordinate);
   const coordinates = useSelector((state) => state.coordinates) || [];
+  const journeys = useSelector(state => state.journeys) || [];
   const finalCoordinates = [initialCoordinate].concat(coordinates);
   const mapRef = useRef('');
 
@@ -71,14 +72,14 @@ const Map = () => {
               destination={finalCoordinates[index + 1]}
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={4}
-              strokeColor={corAzulPrincipal}
+              strokeColor={routeColorsArray[index]}
             />
           );
         })}
         <Marker
           id="initial"
           key="initial"
-          title="initial"
+          title="Localização inicial"
           coordinate={initialCoordinate}
         />
         {finalCoordinates.map((coordinate, index) => {
@@ -86,9 +87,16 @@ const Map = () => {
             <Marker
               id={index}
               key={index}
-              title={`${index}`}
+              // title={`${journeys[index-1]?.Nome}`} 
               coordinate={coordinate}
-            />
+            >
+              <Callout>
+                <View>
+                  <Text>{journeys[index-1]?.Nome}</Text>
+                  <Text>{journeys[index-1]?.Contato}</Text>
+                </View>
+              </Callout>
+            </Marker>
           );
         })}
       </MapView>
