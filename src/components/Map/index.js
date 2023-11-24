@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View } from 'react-native';
-import MapView, { Marker, Polyline } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import styles from './styles';
 import * as Location from 'expo-location';
 import { corAzulPrincipal } from '../../config/colors';
+import MapViewDirections from 'react-native-maps-directions';
+import { GOOGLE_MAPS_APIKEY } from '../../../apiKey';
 
 // API do Google Maps
 // const GOOGLE_MAPS_APIKEY = '…';
 
 // Para desenhar as rotas
 // https://instamobile.io/react-native-tutorials/react-native-draw-directions-map/
+// https://github.com/react-native-maps/react-native-maps/issues/929
 
 const Map = () => {
   // Localização padrão do Porto de Suape
@@ -21,7 +24,6 @@ const Map = () => {
     useState(originalCoordinate);
   const coordinates = useSelector((state) => state.coordinates) || [];
   const finalCoordinates = [initialCoordinate].concat(coordinates);
-
   const mapRef = useRef('');
 
   useEffect(() => {
@@ -60,12 +62,19 @@ const Map = () => {
         ref={mapRef}
         style={styles.map}
       >
-        <Polyline
-          coordinates={finalCoordinates}
-          strokeColor={corAzulPrincipal}
-          strokeColors={['#7F0000']}
-          strokeWidth={4}
-        />
+        {finalCoordinates.map((coordinates, index) => {
+          return (
+            <MapViewDirections
+              id={index}
+              key={index}
+              origin={finalCoordinates[index]}
+              destination={finalCoordinates[index + 1]}
+              apikey={GOOGLE_MAPS_APIKEY}
+              strokeWidth={4}
+              strokeColor={corAzulPrincipal}
+            />
+          );
+        })}
         <Marker
           id="initial"
           key="initial"
