@@ -6,9 +6,12 @@ const coordinatesSlice = createSlice({
   reducers: {
     addCoordinate(state, action) {
       state.push({
-        latitude: action.payload.Latitude,
-        longitude: action.payload.Longitude,
+        latitude: Number.parseFloat(action.payload.Latitude),
+        longitude: Number.parseFloat(action.payload.Longitude),
       });
+    },
+    removeCoordinate(state) {
+      state.pop();
     },
     emptyCoordinates(state) {
       state.length = 0;
@@ -16,5 +19,5 @@ const coordinatesSlice = createSlice({
   },
 });
 
-export const { addCoordinate, emptyCoordinates } = coordinatesSlice.actions;
+export const { addCoordinate, removeCoordinate, emptyCoordinates } = coordinatesSlice.actions;
 export default coordinatesSlice.reducer;

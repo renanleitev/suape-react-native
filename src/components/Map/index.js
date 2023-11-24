@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import styles from './styles';
-import GetLocation from 'react-native-get-location';
-import { showToastError } from '../../services/showToasts';
+import * as Location from 'expo-location';
+import { corAzulPrincipal } from '../../config/colors';
 
 // API do Google Maps
 // const GOOGLE_MAPS_APIKEY = '…';
@@ -19,27 +19,34 @@ const Map = () => {
   const originalCoordinate = { latitude: latitude, longitude: longitude };
   const [initialCoordinate, setInitialCoordinate] =
     useState(originalCoordinate);
-  const [isLocation, setIsLocation] = useState(false);
-  useEffect(() => {
-    setInitialCoordinate(initialCoordinate);
-  }, [isLocation]);
-  GetLocation.getCurrentPosition({
-    enableHighAccuracy: true,
-    timeout: 60000,
-  })
-    .then((location) => {
-      setInitialCoordinate({
-        latitude: location?.latitude,
-        longitude: location?.longitude,
-      });
-      setIsLocation(true);
-    })
-    .catch((error) => {
-      const locationError = 'Nao foi possivel obter a localizacao';
-      showToastError(locationError);
-    });
   const coordinates = useSelector((state) => state.coordinates) || [];
-  coordinates.unshift(originalCoordinate);
+  const finalCoordinates = [initialCoordinate].concat(coordinates);
+
+  const mapRef = useRef('');
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        showToastError('Permissão de localização negada');
+        return;
+      }
+      const location = await Location.getCurrentPositionAsync({});
+      setInitialCoordinate({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+      mapRef.current.animateToRegion(
+        {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.0043,
+          longitudeDelta: 0.0034,
+        },
+        500
+      );
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -50,21 +57,31 @@ const Map = () => {
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
+        ref={mapRef}
         style={styles.map}
       >
         <Polyline
-          coordinates={coordinates}
-          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
+          coordinates={finalCoordinates}
+          strokeColor={corAzulPrincipal}
           strokeColors={['#7F0000']}
-          strokeWidth={6}
+          strokeWidth={4}
         />
-        {coordinates ? (
-          <Marker coordinate={initialCoordinate} />
-        ) : (
-          coordinates.map((coordinate) => {
-            <Marker coordinate={coordinate} />;
-          })
-        )}
+        <Marker
+          id="initial"
+          key="initial"
+          title="initial"
+          coordinate={initialCoordinate}
+        />
+        {finalCoordinates.map((coordinate, index) => {
+          return (
+            <Marker
+              id={index}
+              key={index}
+              title={`${index}`}
+              coordinate={coordinate}
+            />
+          );
+        })}
       </MapView>
     </View>
   );

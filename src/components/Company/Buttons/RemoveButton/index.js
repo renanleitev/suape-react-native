@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
 import { removeJourney } from '../../../../redux/slices/journeysSlice';
+import { removeCoordinate } from '../../../../redux/slices/coordinatesSlice';
 import { useSelector } from 'react-redux';
 import { showToastError } from '../../../../services/showToasts';
 
@@ -17,6 +18,7 @@ const RemoveButton = () => {
   const removeCompanyOrPoint = () => {
     if (journeys.length > 0) {
       dispatch(removeJourney());
+      dispatch(removeCoordinate());
     } else {
       showToastError(removeError);
     }

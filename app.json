@@ -11,6 +11,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permitir que Suape na Palma da Mão acesse a sua localização"
+        }
+      ]
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
