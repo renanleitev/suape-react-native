@@ -8,6 +8,7 @@ import {
   showToastError,
   showToastSuccess,
 } from '../../../../services/showToasts';
+import ConfirmMessage from '../ConfirmMessage';
 import styles from './styles';
 
 const ConfigPoint = (props) => {
@@ -32,6 +33,7 @@ const ConfigPoint = (props) => {
   }, [data]);
 
   const [searching, setSearching] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const crudOperation = async () => {
@@ -42,31 +44,39 @@ const ConfigPoint = (props) => {
               point.id = length + 1;
               await createPoints(point);
               showToastSuccess('Ponto de interesse criado com sucesso.');
+              setModalVisible(false);
             } else {
               showToastError('Não foi possível criar ponto de interesse.');
+              setModalVisible(false);
             }
           } catch (e) {
             showToastError('Não foi possível criar ponto de interesse.');
+            setModalVisible(false);
           }
           break;
         case 'Editar':
           try {
             await patchPoints(point);
             showToastSuccess('Ponto de interesse editado com sucesso.');
+            setModalVisible(false);
           } catch (e) {
             showToastError('Não foi possível editar ponto de interesse.');
+            setModalVisible(false);
           }
           break;
         case 'Apagar':
           try {
             await deletePoints(point);
             showToastSuccess('Ponto de interesse apagado com sucesso.');
+            setModalVisible(false);
           } catch (e) {
             showToastError('Não foi possível apagar ponto de interesse.');
+            setModalVisible(false);
           }
           break;
         default:
           showToastError('Escolha uma opção de requisição válida.');
+          setModalVisible(false);
           break;
       }
     };
@@ -111,11 +121,16 @@ const ConfigPoint = (props) => {
         />
         <Pressable
           style={styles.saveBtn}
-          onPress={() => setSearching(true)}
+          onPress={() => setModalVisible(true)}
           disabled={length <= 0}
         >
           <Text style={styles.text}>Salvar</Text>
         </Pressable>
+        <ConfirmMessage
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          setSearching={setSearching}
+        />
       </ScrollView>
     </SafeAreaView>
   );

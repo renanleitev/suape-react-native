@@ -8,6 +8,7 @@ import {
   showToastError,
   showToastSuccess,
 } from '../../../../services/showToasts';
+import ConfirmMessage from '../ConfirmMessage';
 import styles from './styles';
 
 const ConfigCompany = (props) => {
@@ -36,6 +37,7 @@ const ConfigCompany = (props) => {
   }, [data]);
 
   const [searching, setSearching] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const crudOperation = async () => {
@@ -46,31 +48,39 @@ const ConfigCompany = (props) => {
               company.id = length + 1;
               await createCompanies(company);
               showToastSuccess('Empresa criada com sucesso.');
+              setModalVisible(false);
             } else {
               showToastError('Não foi possível criar empresa.');
+              setModalVisible(false);
             }
           } catch (e) {
             showToastError('Não foi possível criar empresa.');
+            setModalVisible(false);
           }
           break;
         case 'Editar':
           try {
             await patchCompanies(company);
             showToastSuccess('Empresa editada com sucesso.');
+            setModalVisible(false);
           } catch (e) {
             showToastError('Não foi possível editar empresa.');
+            setModalVisible(false);
           }
           break;
         case 'Apagar':
           try {
             await deleteCompanies(company);
             showToastSuccess('Empresa apagada com sucesso.');
+            setModalVisible(false);
           } catch (e) {
             showToastError('Não foi possível apagar empresa.');
+            setModalVisible(false);
           }
           break;
         default:
           showToastError('Escolha uma opção de requisição válida.');
+          setModalVisible(false);
           break;
       }
     };
@@ -125,11 +135,16 @@ const ConfigCompany = (props) => {
         />
         <Pressable
           style={styles.saveBtn}
-          onPress={() => setSearching(true)}
+          onPress={() => setModalVisible(true)}
           disabled={length <= 0}
         >
           <Text style={styles.text}>Salvar</Text>
         </Pressable>
+        <ConfirmMessage
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          setSearching={setSearching}
+        />
       </ScrollView>
     </SafeAreaView>
   );
