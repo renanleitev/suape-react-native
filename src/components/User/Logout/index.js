@@ -30,6 +30,9 @@ const Logout = ({ navigation }) => {
         <Text style={styles.text}>
             Email: {user && user.Email}
         </Text>
+        <Text style={styles.text}>
+            Papel: {user && user.Role}
+        </Text>
         <TouchableOpacity onPress={onLogout} style={styles.logoutBtn}>
           <Text style={styles.text}>LOGOUT</Text>
         </TouchableOpacity>

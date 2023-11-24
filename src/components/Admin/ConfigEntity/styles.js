@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { corBrancaPrincipal, corVerdePrincipal } from '../../../config/colors';
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: corVerdePrincipal,
+  },
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -10,10 +15,6 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 10,
     maxHeight: 60,
-  },
-  title: {
-    color: corBrancaPrincipal,
-    fontSize: 20,
   },
   activeButton: {
     padding: 15,
@@ -42,6 +43,13 @@ const styles = StyleSheet.create({
     paddingLeft: 3,
     paddingRight: 3,
   },
+  selectButton: {
+    borderRadius: 10,
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 20,
+  }
 });
 
 export default styles;

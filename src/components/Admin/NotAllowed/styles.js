@@ -7,6 +7,9 @@ import {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: corVerdePrincipal,
   },
   text: {
@@ -15,6 +18,7 @@ const styles = StyleSheet.create({
   title: {
     color: corBrancaPrincipal,
     fontSize: 20,
+    padding: 10,
   },
   button: {
     backgroundColor: corAzulPrincipal,

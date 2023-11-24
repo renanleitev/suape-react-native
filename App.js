@@ -10,6 +10,7 @@ import Mapa from './src/pages/Mapa';
 import LoginLogout from './src/pages/LoginLogout';
 import CadastrarApagar from './src/pages/CadastrarApagar';
 import ForgotPassword from './src/components/User/ForgotPassword';
+import Dashboard from './src/pages/Dashboard';
 import CustomDrawer from './src/components/CustomDrawer';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
@@ -49,6 +50,11 @@ export default function App() {
             options={stackScreenOptions}
             name="Redefinir senha"
             component={ForgotPassword}
+          />
+          <Drawer.Screen
+            options={stackScreenOptions}
+            name="Painel de Administração"
+            component={Dashboard}
           />
           <Drawer.Screen
             options={stackScreenOptions}

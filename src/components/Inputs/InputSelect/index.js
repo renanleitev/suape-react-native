@@ -12,7 +12,7 @@ const InputSelect = (props) => {
       data={data}
       search={true}
       searchPlaceHolder={placeholder}
-      disabled={!data}
+      disabled={data.length <= 0}
       defaultButtonText={placeholder}
       defaultValue={data[0]}
       buttonStyle={styles.inputSelect}

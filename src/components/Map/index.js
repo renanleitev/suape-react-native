@@ -92,7 +92,7 @@ const Map = () => {
               <Callout>
                 <View>
                   <Text>{index}. {journeys[index-1]?.Nome}</Text>
-                  <Text>{journeys[index-1]?.Contato}</Text>
+                  <Text>Contato: {journeys[index-1]?.Contato}</Text>
                 </View>
               </Callout>
             </Marker>

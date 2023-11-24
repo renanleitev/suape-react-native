@@ -13,14 +13,17 @@ const DeleteAccount = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Perfil</Text>
       <ScrollView>
-        <Text style={styles.text}>
-            Nome: {user.Name}
+      <Text style={styles.text}>
+            Nome: {user && user.Name}
         </Text>
         <Text style={styles.text}>
-            Nome de usuário: {user.Username}
+            Nome de usuário: {user && user.Username}
         </Text>
         <Text style={styles.text}>
-            Email: {user.Email}
+            Email: {user && user.Email}
+        </Text>
+        <Text style={styles.text}>
+            Papel: {user && user.Role}
         </Text>
         <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.deleteBtn}>
           <Text style={styles.text}>Apagar Conta</Text>
