@@ -87,12 +87,11 @@ const Map = () => {
             <Marker
               id={index}
               key={index}
-              // title={`${journeys[index-1]?.Nome}`} 
               coordinate={coordinate}
             >
               <Callout>
                 <View>
-                  <Text>{journeys[index-1]?.Nome}</Text>
+                  <Text>{index}. {journeys[index-1]?.Nome}</Text>
                   <Text>{journeys[index-1]?.Contato}</Text>
                 </View>
               </Callout>
