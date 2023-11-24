@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
     navigation.navigate('Redefinir senha');
   };
   const onPressSignUp = () => {
-    navigation.navigate('Cadastrar');
+    navigation.navigate('Cadastrar/Apagar conta');
   };
 
   return (

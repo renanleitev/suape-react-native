@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import { corBrancaPrincipal, corVerdeSecundaria, corAzulPrincipal } from '../../../config/colors';
 
 const styles = StyleSheet.create({
+  infoCompany: {
+    padding: 10,
+  },
   itemText: {
     marginTop: 10,
     marginBottom: 10,
