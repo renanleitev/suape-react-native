@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, SafeAreaView, Pressable, Text } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import InputText from '../../../Inputs/InputText';
 import { createCompanies } from '../../../../services/createCompanies';
 import { deleteCompanies } from '../../../../services/deleteCompanies';
@@ -14,7 +14,6 @@ import styles from './styles';
 const ConfigCompany = (props) => {
   const data = props.data;
   const option = props.option;
-  const length = props.length;
 
   const initialCompany = {
     id: '',
@@ -44,15 +43,10 @@ const ConfigCompany = (props) => {
       switch (option) {
         case 'Criar':
           try {
-            if (length > 0) {
-              company.id = length + 1;
+              company.id = Date.now();
               await createCompanies(company);
               showToastSuccess('Empresa criada com sucesso.');
               setModalVisible(false);
-            } else {
-              showToastError('Não foi possível criar empresa.');
-              setModalVisible(false);
-            }
           } catch (e) {
             showToastError('Não foi possível criar empresa.');
             setModalVisible(false);
@@ -91,8 +85,7 @@ const ConfigCompany = (props) => {
   }, [option, searching]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
+    <View style={styles.container}>
         <InputText
           placeholder="Nome"
           defaultValue={data?.Nome}
@@ -136,7 +129,6 @@ const ConfigCompany = (props) => {
         <Pressable
           style={styles.saveBtn}
           onPress={() => setModalVisible(true)}
-          disabled={length <= 0}
         >
           <Text style={styles.text}>Salvar</Text>
         </Pressable>
@@ -145,8 +137,7 @@ const ConfigCompany = (props) => {
           setModalVisible={setModalVisible}
           setSearching={setSearching}
         />
-      </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

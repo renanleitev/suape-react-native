@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, Pressable } from 'react-native';
 import ConfigCompany from './ConfigCompany';
 import ConfigPoint from './ConfigPoint';
+import ConfigUser from './ConfigUser';
 import SelectDropdown from 'react-native-select-dropdown';
-import { useDispatch } from 'react-redux';
-import {
-  emptyCompanies,
-  addCompany,
-} from '../../../redux/slices/companiesSlice';
-import { emptyPoints, addPoint } from '../../../redux/slices/pointsSlice';
 import { getCompanies } from '../../../services/getCompanies';
 import { getPoints } from '../../../services/getPoints';
+import { getUsers } from '../../../services/getUsers';
 import { useSortArrayByName } from '../../../hooks/use-sort-array';
 import styles from './styles';
 
@@ -19,42 +15,54 @@ const ConfigEntity = () => {
   const [entity, setEntity] = useState({});
   const [companySelected, setCompanySelected] = useState(true);
   const [pointSelected, setPointSelected] = useState(false);
+  const [userSelected, setUserSelected] = useState(false);
   const [data, setData] = useState([]);
   const [dataName, setDataName] = useState([]);
   const placeholder = `Pesquisar ${type}...`;
-  const options = ['Criar', 'Editar', 'Apagar'];
+  const criar = 'Criar';
+  const editar = 'Editar';
+  const apagar = 'Apagar';
+  const options = [criar, editar, apagar];
+  const empresas = 'Empresas';
+  const pontos = 'Pontos';
+  const usuarios = 'Usuários';
   const [option, setOption] = useState(options[0]);
-  const dispatch = useDispatch();
   const handleCompany = () => {
     setCompanySelected(true);
     setPointSelected(false);
-    setType('empresas');
+    setUserSelected(false);
+    setType(empresas);
     setEntity({});
   };
   const handlePoint = () => {
     setCompanySelected(false);
     setPointSelected(true);
-    setType('pontos de interesse');
+    setUserSelected(false);
+    setType(pontos);
+    setEntity({});
+  };
+  const handleUser = () => {
+    setCompanySelected(false);
+    setPointSelected(false);
+    setUserSelected(true);
+    setType(usuarios);
     setEntity({});
   };
   useEffect(() => {
     const fetchCompanies = async () => {
-      dispatch(emptyCompanies());
       const companiesFetched = await getCompanies();
-      companiesFetched.forEach((element) => {
-        dispatch(addCompany(element));
-      });
       setData(companiesFetched);
       setDataName(useSortArrayByName(companiesFetched));
     };
     const fetchPoints = async () => {
-      dispatch(emptyPoints());
       const pointsFetched = await getPoints();
-      pointsFetched.forEach((element) => {
-        dispatch(addPoint(element));
-      });
       setData(pointsFetched);
       setDataName(useSortArrayByName(pointsFetched));
+    };
+    const fetchUsers = async () => {
+      const usersFetched = await getUsers();
+      setData(usersFetched);
+      setDataName(useSortArrayByName(usersFetched));
     };
     if (companySelected) {
       fetchCompanies();
@@ -62,58 +70,97 @@ const ConfigEntity = () => {
     if (pointSelected) {
       fetchPoints();
     }
-  }, [companySelected, pointSelected]);
+    if (userSelected) {
+      fetchUsers();
+    }
+  }, [companySelected, pointSelected, userSelected]);
+
+  const renderEntity = () => {
+    switch (type) {
+      case empresas:
+        return (
+          <ConfigCompany data={entity} option={option} />
+        );
+      case pontos:
+        return (
+          <ConfigPoint data={entity} option={option} />
+        );
+      case usuarios:
+        return (
+          <ConfigUser data={entity} option={option} />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        <Pressable
-          style={companySelected ? styles.activeButton : styles.disabledButton}
-          onPress={handleCompany}
-        >
-          <Text
-            style={companySelected ? styles.activeText : styles.disabledText}
+    <SafeAreaView style={styles.mainContainer}>
+      <ScrollView>
+        <View style={styles.container}>
+          <Pressable
+            style={
+              companySelected ? styles.activeButton : styles.disabledButton
+            }
+            onPress={handleCompany}
           >
-            Empresas
-          </Text>
-        </Pressable>
-        <Pressable
-          style={pointSelected ? styles.activeButton : styles.disabledButton}
-          onPress={handlePoint}
-        >
-          <Text style={pointSelected ? styles.activeText : styles.disabledText}>
-            Pontos de Interesse
-          </Text>
-        </Pressable>
-      </View>
-      <SelectDropdown
-        data={dataName}
-        search={true}
-        searchPlaceHolder={placeholder}
-        defaultButtonText={placeholder}
-        disabled={data.length <= 0}
-        defaultValue={dataName[0]}
-        buttonStyle={styles.selectButton}
-        onSelect={(optionSelect, index) => {
-          const findEntity = data.find(d => d.Nome === optionSelect);
-          setEntity(findEntity);
-        }}
-      />
-      <SelectDropdown
-        data={options}
-        defaultValue={options[0]}
-        buttonStyle={styles.selectButton}
-        onSelect={(optionSelect, index) => {
-          if (optionSelect === 'Criar') setEntity({});
-          setOption(optionSelect);
-        }}
-      />
-      {type === 'empresas' ? (
-        <ConfigCompany data={entity} option={option} length={data.length}/>
-      ) : (
-        <ConfigPoint data={entity} option={option} length={data.length}/>
-      )}
-    </View>
+            <Text
+              style={companySelected ? styles.activeText : styles.disabledText}
+            >
+              {empresas}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={pointSelected ? styles.activeButton : styles.disabledButton}
+            onPress={handlePoint}
+          >
+            <Text
+              style={pointSelected ? styles.activeText : styles.disabledText}
+            >
+              {pontos}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={userSelected ? styles.activeButton : styles.disabledButton}
+            onPress={handleUser}
+          >
+            <Text
+              style={userSelected ? styles.activeText : styles.disabledText}
+            >
+              {usuarios}
+            </Text>
+          </Pressable>
+        </View>
+        <SelectDropdown
+          data={dataName}
+          search={true}
+          searchPlaceHolder={placeholder}
+          defaultButtonText={placeholder}
+          disabled={data.length <= 0}
+          defaultValue={dataName[0]}
+          buttonStyle={styles.selectButton}
+          onSelect={(optionSelect, index) => {
+            if (companySelected || pointSelected) {
+              const findEntity = data.find((d) => d.Nome === optionSelect);
+              setEntity(findEntity);
+            } else if (userSelected) {
+              const findEntity = data.find((d) => d.Name === optionSelect);
+              setEntity(findEntity);
+            }
+          }}
+        />
+        <SelectDropdown
+          data={options}
+          defaultValue={options[0]}
+          buttonStyle={styles.selectButton}
+          onSelect={(optionSelect, index) => {
+            if (optionSelect === criar) setEntity({});
+            setOption(optionSelect);
+          }}
+        />
+        {renderEntity()}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

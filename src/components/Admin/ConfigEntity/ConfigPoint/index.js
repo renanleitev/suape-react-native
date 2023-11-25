@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, SafeAreaView, Pressable, Text } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import InputText from '../../../Inputs/InputText';
 import { createPoints } from '../../../../services/createPoints';
 import { deletePoints } from '../../../../services/deletePoints';
@@ -14,7 +14,6 @@ import styles from './styles';
 const ConfigPoint = (props) => {
   const data = props.data;
   const option = props.option;
-  const length = props.length;
 
   const initialPoint = {
     id: '',
@@ -40,15 +39,10 @@ const ConfigPoint = (props) => {
       switch (option) {
         case 'Criar':
           try {
-            if (length > 0) {
-              point.id = length + 1;
-              await createPoints(point);
-              showToastSuccess('Ponto de interesse criado com sucesso.');
-              setModalVisible(false);
-            } else {
-              showToastError('Não foi possível criar ponto de interesse.');
-              setModalVisible(false);
-            }
+            point.id = Date.now();
+            await createPoints(point);
+            showToastSuccess('Ponto de interesse criado com sucesso.');
+            setModalVisible(false);
           } catch (e) {
             showToastError('Não foi possível criar ponto de interesse.');
             setModalVisible(false);
@@ -87,52 +81,49 @@ const ConfigPoint = (props) => {
   }, [option, searching]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <InputText
-          placeholder="Nome"
-          defaultValue={data?.Nome}
-          onChangeText={(text) => setPoint({ ...point, Nome: text })}
-        />
-        <InputText
-          placeholder="Atividade"
-          defaultValue={data?.Atividade}
-          onChangeText={(text) => setPoint({ ...point, Atividade: text })}
-        />
-        <InputText
-          placeholder="Endereço"
-          defaultValue={data?.Endereço}
-          onChangeText={(text) => setPoint({ ...point, Endereço: text })}
-        />
-        <InputText
-          placeholder="Contato"
-          defaultValue={data?.Contato}
-          onChangeText={(text) => setPoint({ ...point, Contato: text })}
-        />
-        <InputText
-          placeholder="Latitude"
-          defaultValue={data?.Latitude}
-          onChangeText={(text) => setPoint({ ...point, Latitude: text })}
-        />
-        <InputText
-          placeholder="Longitude"
-          defaultValue={data?.Longitude}
-          onChangeText={(text) => setPoint({ ...point, Longitude: text })}
-        />
-        <Pressable
-          style={styles.saveBtn}
-          onPress={() => setModalVisible(true)}
-          disabled={length <= 0}
-        >
-          <Text style={styles.text}>Salvar</Text>
-        </Pressable>
-        <ConfirmMessage
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-          setSearching={setSearching}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <InputText
+        placeholder="Nome"
+        defaultValue={data?.Nome}
+        onChangeText={(text) => setPoint({ ...point, Nome: text })}
+      />
+      <InputText
+        placeholder="Atividade"
+        defaultValue={data?.Atividade}
+        onChangeText={(text) => setPoint({ ...point, Atividade: text })}
+      />
+      <InputText
+        placeholder="Endereço"
+        defaultValue={data?.Endereço}
+        onChangeText={(text) => setPoint({ ...point, Endereço: text })}
+      />
+      <InputText
+        placeholder="Contato"
+        defaultValue={data?.Contato}
+        onChangeText={(text) => setPoint({ ...point, Contato: text })}
+      />
+      <InputText
+        placeholder="Latitude"
+        defaultValue={data?.Latitude}
+        onChangeText={(text) => setPoint({ ...point, Latitude: text })}
+      />
+      <InputText
+        placeholder="Longitude"
+        defaultValue={data?.Longitude}
+        onChangeText={(text) => setPoint({ ...point, Longitude: text })}
+      />
+      <Pressable
+        style={styles.saveBtn}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.text}>Salvar</Text>
+      </Pressable>
+      <ConfirmMessage
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        setSearching={setSearching}
+      />
+    </View>
   );
 };
 
