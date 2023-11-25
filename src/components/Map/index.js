@@ -8,13 +8,6 @@ import { routeColorsArray } from '../../config/colors';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAPS_APIKEY } from '../../../apiKey';
 
-// API do Google Maps
-// const GOOGLE_MAPS_APIKEY = '…';
-
-// Para desenhar as rotas
-// https://instamobile.io/react-native-tutorials/react-native-draw-directions-map/
-// https://github.com/react-native-maps/react-native-maps/issues/929
-
 const Map = () => {
   // Localização padrão do Porto de Suape
   const latitude = -8.394097983524112;
@@ -23,7 +16,7 @@ const Map = () => {
   const [initialCoordinate, setInitialCoordinate] =
     useState(originalCoordinate);
   const coordinates = useSelector((state) => state.coordinates) || [];
-  const journeys = useSelector(state => state.journeys) || [];
+  const journeys = useSelector((state) => state.journeys) || [];
   const finalCoordinates = [initialCoordinate].concat(coordinates);
   const mapRef = useRef('');
 
@@ -83,20 +76,20 @@ const Map = () => {
           coordinate={initialCoordinate}
         />
         {finalCoordinates.map((coordinate, index) => {
-          return (
-            <Marker
-              id={index}
-              key={index}
-              coordinate={coordinate}
-            >
-              <Callout>
-                <View>
-                  <Text>{index}. {journeys[index-1]?.Nome}</Text>
-                  <Text>Contato: {journeys[index-1]?.Contato}</Text>
-                </View>
-              </Callout>
-            </Marker>
-          );
+          if (index > 0) {
+            return (
+              <Marker id={index} key={index} coordinate={coordinate}>
+                <Callout>
+                  <View>
+                    <Text>
+                      {index}. {journeys[index - 1]?.Nome}
+                    </Text>
+                    <Text>Contato: {journeys[index - 1]?.Contato}</Text>
+                  </View>
+                </Callout>
+              </Marker>
+            );
+          }
         })}
       </MapView>
     </View>
