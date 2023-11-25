@@ -11,7 +11,6 @@ import { useSortArrayByName } from '../../../hooks/use-sort-array';
 import styles from './styles';
 
 const ConfigEntity = () => {
-  const [type, setType] = useState('empresas');
   const [entity, setEntity] = useState({});
   const [companySelected, setCompanySelected] = useState(true);
   const [pointSelected, setPointSelected] = useState(false);
@@ -27,6 +26,7 @@ const ConfigEntity = () => {
   const pontos = 'Pontos';
   const usuarios = 'Usuários';
   const [option, setOption] = useState(options[0]);
+  const [type, setType] = useState(empresas);
   const handleCompany = () => {
     setCompanySelected(true);
     setPointSelected(false);
