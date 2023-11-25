@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import InputText from '../../Inputs/InputText';
 import { loginUser } from '../../../services/loginUser';
-import { showToastSuccess, showToastError } from '../../../services/showToasts';
+import { showToastSuccess, showToastError, showToastInfo } from '../../../services/showToasts';
 import { login } from '../../../redux/slices/usersSlice';
 import { useDispatch } from 'react-redux';
 import styles from './styles';
@@ -14,8 +14,10 @@ const Login = ({ navigation }) => {
     Password: '',
   });
   const loginSuccess = "Usuário autenticado com sucesso. Redirecionando...";
+  const loginInfo = "Autenticando...";
   const loginError = "Email e/ou senha incorreto(s)";
   const onPressLogin = async () => {
+    showToastInfo(loginInfo);
     const response = await loginUser(user);
     try {
       if (response.Email === user.Email && response.Password === user.Password) {

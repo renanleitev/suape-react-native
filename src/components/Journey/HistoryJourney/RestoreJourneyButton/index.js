@@ -1,5 +1,5 @@
 import { Text, Pressable } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   showToastSuccess,
   showToastError,
@@ -7,10 +7,8 @@ import {
 import { addJourney, emptyJourneys } from '../../../../redux/slices/journeysSlice';
 import styles from './styles';
 
-const RestoreJourneyButton = () => {
-  const users = useSelector((state) => state.users) || [];
-  const user = users[0];
-  const journeys = user?.Journey;
+const RestoreJourneyButton = (props) => {
+  const journey = props.journey;
 
   const dispatch = useDispatch();
 
@@ -18,10 +16,10 @@ const RestoreJourneyButton = () => {
   const emptyJourneyError = 'Histórico de itinerário está vazio';
 
   const saveJourney = async () => {
-    if (journeys) {
+    if (journey) {
       showToastSuccess(restoreJourneySuccess);
       dispatch(emptyJourneys());
-      journeys.forEach((journey) => dispatch(addJourney(journey)));
+      journey.forEach((journey) => dispatch(addJourney(journey)));
     } else {
       showToastError(emptyJourneyError);
     }

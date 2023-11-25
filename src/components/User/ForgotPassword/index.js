@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { useEmailValidation } from '../../../hooks/use-forms-validation';
 import { usePasswordValidation } from '../../../hooks/use-forms-validation';
-import { showToastSuccess } from '../../../services/showToasts';
+import { showToastSuccess, showToastError } from '../../../services/showToasts';
 import InputText from '../../Inputs/InputText';
 import { patchForgetPassword } from '../../../services/patchForgetPassword';
 import styles from './styles';
@@ -14,8 +14,8 @@ const ForgotPassword = ({ navigation }) => {
     RepeatPassword: '',
   });
 
-  const redefineSucess =
-    'Senha redefinida com sucesso. Por favor, faça o login';
+  const redefineSucess = 'Senha redefinida com sucesso.';
+  const redefineError = 'Não foi possível redefinir a senha.';
 
   const onRedefinePassword = async () => {
     const isEmailValid = useEmailValidation(user.Email);
@@ -24,9 +24,13 @@ const ForgotPassword = ({ navigation }) => {
       user.RepeatPassword
     );
     if (isEmailValid && isPasswordValid) {
-      await patchForgetPassword(user);
-      showToastSuccess(redefineSucess);
-      navigation.navigate('Login');
+      try {
+        await patchForgetPassword(user);
+        showToastSuccess(redefineSucess);
+        navigation.navigate('Login/Logout');
+      } catch (e) {
+        showToastError(redefineError);
+      }
     }
   };
 
@@ -36,17 +40,17 @@ const ForgotPassword = ({ navigation }) => {
       <ScrollView>
         <InputText
           placeholder="Email"
-          onChangeText={(text) => setUser({ ...user, email: text })}
+          onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText
           placeholder="Nova Senha"
           secureTextEntry={true}
-          onChangeText={(text) => setUser({ ...user, password: text })}
+          onChangeText={(text) => setUser({ ...user, Password: text })}
         />
         <InputText
           placeholder="Repetir senha"
           secureTextEntry={true}
-          onChangeText={(text) => setUser({ ...user, repeatPassword: text })}
+          onChangeText={(text) => setUser({ ...user, RepeatPassword: text })}
         />
         <TouchableOpacity
           onPress={onRedefinePassword}

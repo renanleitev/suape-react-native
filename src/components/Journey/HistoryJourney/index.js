@@ -11,6 +11,7 @@ const HistoryJourney = (props) => {
   const setModalVisible = props.setModalVisible;
 
   const [openClearJourney, setOpenClearJourney] = useState(false);
+  const [journey, setJourney] = useState([]);
 
   return (
     <View style={styles.centeredView}>
@@ -37,9 +38,9 @@ const HistoryJourney = (props) => {
               <DeleteJourneyMessage setModalVisible={setOpenClearJourney} />
             ) : (
               <>
-                <PreviousJourney />
+                <PreviousJourney journey={journey} setJourney={setJourney} modalVisible={modalVisible}/>
                 <View style={styles.buttonContainer}>
-                  <RestoreJourneyButton/>
+                  <RestoreJourneyButton journey={journey}/>
                   <DeleteJourneyButton setModalVisible={setOpenClearJourney} />
                 </View>
               </>

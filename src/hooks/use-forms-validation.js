@@ -17,10 +17,10 @@ export const useEmailValidation = (email) => {
 
 export const usePasswordValidation = (password, repeatPassword) => {
   const minCharacter = 6;
-  if (!password || password.length === 0) {
+  if (!password) {
     showToastError('Senha não pode ser vazia');
     return false;
-  } else if (!repeatPassword || repeatPassword.length === 0) {
+  } else if (!repeatPassword) {
     showToastError('Repetir senha não pode ser vazia');
     return false;
   } else if (password !== repeatPassword) {
@@ -30,7 +30,7 @@ export const usePasswordValidation = (password, repeatPassword) => {
     password.length < minCharacter ||
     repeatPassword.length < minCharacter
   ) {
-    showToastError(`Senhas devem ter mais de ${minCharacter} caracteres`);
+    showToastError(`Senha deve ter mais de ${minCharacter} caracteres`);
     return false;
   }
   return true;

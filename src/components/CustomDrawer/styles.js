@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   welcomeTitle: {
     textAlign: 'center',
+    marginBottom: 20,
   },
 });
 
