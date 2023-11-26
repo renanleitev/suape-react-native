@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import styles from './styles';
 import * as Location from 'expo-location';
 import { routeColorsArray } from '../../config/colors';
 import MapViewDirections from 'react-native-maps-directions';
+import { showToastError } from '../../services/showToasts';
 import { GOOGLE_MAPS_APIKEY } from '../../../apiKey';
 
 const Map = (props) => {
@@ -15,12 +16,13 @@ const Map = (props) => {
   const coordinates = useSelector((state) => state.coordinates) || [];
   const journeys = useSelector((state) => state.journeys) || [];
   const finalCoordinates = [initialCoordinate].concat(coordinates);
+  const errorLocation = 'Permissão de localização negada';
 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        showToastError('Permissão de localização negada');
+        showToastError(errorLocation);
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
