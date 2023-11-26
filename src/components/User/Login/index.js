@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import InputText from '../../Inputs/InputText';
 import { loginUser } from '../../../services/loginUser';
-import { showToastSuccess, showToastError, showToastInfo } from '../../../services/showToasts';
+import {
+  showToastSuccess,
+  showToastError,
+  showToastInfo,
+} from '../../../services/showToasts';
 import { login } from '../../../redux/slices/usersSlice';
 import { useDispatch } from 'react-redux';
 import { MapaPage, CadastrarApagarPage } from '../../../constants';
@@ -14,14 +18,20 @@ const Login = ({ navigation }) => {
     Email: '',
     Password: '',
   });
-  const loginSuccess = "Usuário autenticado com sucesso. Redirecionando...";
-  const loginInfo = "Autenticando...";
-  const loginError = "Email e/ou senha incorreto(s)";
+  const loginSuccess = 'Usuário autenticado com sucesso. Redirecionando...';
+  const loginInfo = 'Autenticando...';
+  const loginError = 'Email e/ou senha incorreto(s)';
+  const loginTitle = 'Login';
+  const loginButton = 'LOGIN';
+  const notSignUpButton = 'Não tem conta? Cadastre-se';
   const onPressLogin = async () => {
     showToastInfo(loginInfo);
     const response = await loginUser(user);
     try {
-      if (response.Email === user.Email && response.Password === user.Password) {
+      if (
+        response.Email === user.Email &&
+        response.Password === user.Password
+      ) {
         navigation.navigate(MapaPage);
         showToastSuccess(loginSuccess);
         dispatch(login(response));
@@ -38,7 +48,7 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>{loginTitle}</Text>
       <ScrollView>
         <InputText
           placeholder="Email"
@@ -50,10 +60,10 @@ const Login = ({ navigation }) => {
           onChangeText={(text) => setUser({ ...user, Password: text })}
         />
         <TouchableOpacity onPress={onPressLogin} style={styles.loginBtn}>
-          <Text style={styles.text}>LOGIN</Text>
+          <Text style={styles.text}>{loginButton}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={onPressSignUp}>
-          <Text style={styles.text}>Não tem conta? Cadastre-se</Text>
+          <Text style={styles.text}>{notSignUpButton}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

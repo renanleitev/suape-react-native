@@ -14,6 +14,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: corBrancaPrincipal,
+    alignSelf: 'center',
+    fontSize: 20,
   },
   title: {
     color: corBrancaPrincipal,
@@ -22,8 +24,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: corAzulPrincipal,
-    borderRadius: 20,
-    padding: 20,
+    width: '80%',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 10,
   },
 });
 

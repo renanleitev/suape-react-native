@@ -1,17 +1,22 @@
 import { View, Text, Pressable } from 'react-native';
-import { MapaPage } from '../../../constants';
+import ReturnButton from '../../Buttons/ReturnButton';
+import { LoginLogoutPage } from '../../../constants';
 import styles from './styles';
 
 const NotAllowed = ({ navigation }) => {
+  const notAllowedMessage = 'Acesso negado';
+  const loginButton = 'LOGIN';
+
   const handleNotAllowed = () => {
-    navigation.navigate(MapaPage);
+    navigation.navigate(LoginLogoutPage);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Acesso negado.</Text>
+      <Text style={styles.title}>{notAllowedMessage}</Text>
+      <ReturnButton navigation={navigation} />
       <Pressable style={styles.button} onPress={handleNotAllowed}>
-        <Text style={styles.text}>Voltar</Text>
+        <Text style={styles.text}>{loginButton}</Text>
       </Pressable>
     </View>
   );

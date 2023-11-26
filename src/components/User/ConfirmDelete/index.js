@@ -12,6 +12,7 @@ const ConfirmDelete = (props) => {
   const navigation = props.navigation;
   const deleteAccountSuccess = 'Conta apagada com sucesso. Redirecionando...';
   const deleteAccountWarning = 'Apagar conta? Essa ação é irreversível.';
+  const deleteAccountButton = 'Apagar Conta';
 
   const dispatch = useDispatch();
 

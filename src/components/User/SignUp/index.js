@@ -24,6 +24,9 @@ const SignUp = ({ navigation }) => {
   });
   const signUpSucesss = 'Cadastro bem sucedido. Redirecionando...';
   const signUpError = 'Erro durante o cadastro. Por favor, tente novamente';
+  const signUpTitle = 'Cadastrar';
+  const signUpButton = 'CADASTRAR';
+  const notLoggedInButton = 'Já tem uma conta? Faça o login';
 
   const dispatch = useDispatch();
 
@@ -51,7 +54,7 @@ const SignUp = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Cadastrar</Text>
+      <Text style={styles.title}>{signUpTitle}</Text>
       <ScrollView>
         <InputText
           placeholder="Nome"
@@ -76,10 +79,10 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setUser({ ...user, RepeatPassword: text })}
         />
         <TouchableOpacity onPress={onPressSignUp} style={styles.signUpBtn}>
-          <Text style={styles.text}>CADASTRAR</Text>
+          <Text style={styles.text}>{signUpButton}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={onPressLogin}>
-          <Text style={styles.text}>Já tem uma conta? Faça o login</Text>
+          <Text style={styles.text}>{notLoggedInButton}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

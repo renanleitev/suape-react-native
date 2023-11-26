@@ -13,6 +13,8 @@ const Logout = ({ navigation }) => {
   const user = users[0];
   const dispatch = useDispatch();
   const logoutSuccess = 'Logout realizado com sucesso. Redirecionando...';
+  const logoutButton = 'LOGOUT';
+  const profileTitle = 'Perfil';
 
   const onLogout = () => {
     dispatch(logout());
@@ -22,7 +24,7 @@ const Logout = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Perfil</Text>
+      <Text style={styles.title}>{profileTitle}</Text>
       <ScrollView>
         <Text style={styles.text}>Nome: {user && user.Name}</Text>
         <Text style={styles.text}>
@@ -36,7 +38,7 @@ const Logout = ({ navigation }) => {
           onPress={onLogout}
           style={[styles.button, styles.logoutBtn]}
         >
-          <Text style={styles.text}>LOGOUT</Text>
+          <Text style={styles.text}>{logoutButton}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
