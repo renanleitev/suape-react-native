@@ -17,7 +17,6 @@ const ConfigEntity = () => {
   const [userSelected, setUserSelected] = useState(false);
   const [data, setData] = useState([]);
   const [dataName, setDataName] = useState([]);
-  const placeholder = `Pesquisar ${type}...`;
   const criar = 'Criar';
   const editar = 'Editar';
   const apagar = 'Apagar';
@@ -27,6 +26,7 @@ const ConfigEntity = () => {
   const usuarios = 'Usuários';
   const [option, setOption] = useState(options[0]);
   const [type, setType] = useState(empresas);
+  const placeholder = `Pesquisar ${type}...`;
   const handleCompany = () => {
     setCompanySelected(true);
     setPointSelected(false);
