@@ -45,8 +45,17 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
+    const edgeLevel = 50;
     mapRef.current.fitToCoordinates(
       finalCoordinates,
+      {
+        edgePadding: {
+          top: edgeLevel,
+          right: edgeLevel,
+          bottom: edgeLevel,
+          left: edgeLevel,
+        },
+      },
       { animated: true }
     );
   }, [finalCoordinates]);
