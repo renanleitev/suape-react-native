@@ -1,20 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { corVerdePrincipal, corVerdeSecundaria, corBrancaPrincipal, corVermelhaPrincipal } from '../../../config/colors';
+import { corVerdeSecundaria, corBrancaPrincipal, } from '../../../config/colors';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: corVerdePrincipal,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 40,
-    color: corBrancaPrincipal,
-    marginTop: 20,
-    marginBottom: 40,
-  },
   button: {
     width: '80%',
     borderRadius: 25,
@@ -24,9 +11,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
     marginBottom: 10,
-  },
-  logoutBtn: {
-    backgroundColor: corVermelhaPrincipal,
   },
   journeyBtn: {
     backgroundColor: corVerdeSecundaria,

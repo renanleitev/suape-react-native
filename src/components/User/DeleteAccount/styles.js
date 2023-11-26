@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   deleteBtn: {
-    width: '100%',
+    width: '80%',
     backgroundColor: corVermelhaPrincipal,
     borderRadius: 25,
     height: 50,

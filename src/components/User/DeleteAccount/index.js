@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import ConfirmDelete from '../ConfirmDelete';
+import JourneyButton from '../../Buttons/JourneyButton';
+import ReturnButton from '../../Buttons/ReturnButton';
 import styles from './styles';
 
 const DeleteAccount = ({ navigation }) => {
@@ -25,8 +27,10 @@ const DeleteAccount = ({ navigation }) => {
         <Text style={styles.text}>
             Papel: {user && user.Role}
         </Text>
+        <JourneyButton/>
+        <ReturnButton navigation={navigation}/>
         <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={styles.deleteBtn}>
-          <Text style={styles.text}>Apagar Conta</Text>
+          <Text style={styles.text}>APAGAR CONTA</Text>
         </TouchableOpacity>
         <ConfirmDelete
           navigation={navigation}
