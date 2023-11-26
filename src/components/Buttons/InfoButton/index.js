@@ -11,7 +11,7 @@ const InfoButton = (props) => {
     <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
       <Icon
         name='office-building-marker-outline'
-        size={28}
+        size={20}
         style={styles.icon}
       />
     </Pressable>

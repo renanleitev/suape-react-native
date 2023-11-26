@@ -8,17 +8,13 @@ import { routeColorsArray } from '../../config/colors';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAPS_APIKEY } from '../../../apiKey';
 
-const Map = () => {
-  // Localização padrão do Porto de Suape
-  const latitude = -8.394097983524112;
-  const longitude = -34.97408204488957;
-  const originalCoordinate = { latitude: latitude, longitude: longitude };
-  const [initialCoordinate, setInitialCoordinate] =
-    useState(originalCoordinate);
+const Map = (props) => {
+  const initialCoordinate = props.initialCoordinate;
+  const setInitialCoordinate = props.setInitialCoordinate;
+  const mapRef = props.mapRef;
   const coordinates = useSelector((state) => state.coordinates) || [];
   const journeys = useSelector((state) => state.journeys) || [];
   const finalCoordinates = [initialCoordinate].concat(coordinates);
-  const mapRef = useRef('');
 
   useEffect(() => {
     (async () => {
@@ -58,14 +54,14 @@ const Map = () => {
       },
       { animated: true }
     );
-  }, [finalCoordinates]);
+  }, [coordinates]);
 
   return (
     <View style={styles.container}>
       <MapView
         initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude: initialCoordinate.latitude,
+          longitude: initialCoordinate.longitude,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}

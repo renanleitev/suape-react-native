@@ -1,19 +1,31 @@
-import { StyleSheet } from "react-native";
-import {corVerdeSecundaria, corBrancaPrincipal} from "../../../config/colors";
+import { StyleSheet } from 'react-native';
+import {
+  corVerdeSecundaria,
+  corBrancaPrincipal,
+  corEscuraPrincipal,
+} from '../../../config/colors';
 
 const styles = StyleSheet.create({
-    button: {
-      padding: 15,
-      backgroundColor: corVerdeSecundaria,
-      borderRadius: 50,
-      position: 'absolute',
-      bottom: 70,
-      right: 10,
+  button: {
+    padding: 10,
+    backgroundColor: corVerdeSecundaria,
+    borderRadius: 50,
+    position: 'absolute',
+    bottom: 70,
+    right: 10,
+    shadowColor: corEscuraPrincipal,
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    icon: {
-      color: corBrancaPrincipal,
-    },
-  });
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  icon: {
+    color: corBrancaPrincipal,
+  },
+});
 
 export default styles;
-  

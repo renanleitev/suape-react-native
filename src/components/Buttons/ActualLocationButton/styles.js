@@ -1,17 +1,13 @@
 import { StyleSheet } from 'react-native';
-import {
-  corAmarelaPrincipal,
-  corBrancaPrincipal,
-  corEscuraPrincipal,
-} from '../../../config/colors';
+import { corEscuraPrincipal, corBrancaPrincipal } from '../../../config/colors';
 
 const styles = StyleSheet.create({
   button: {
     padding: 10,
-    backgroundColor: corAmarelaPrincipal,
+    backgroundColor: corBrancaPrincipal,
     borderRadius: 50,
     position: 'absolute',
-    bottom: 190,
+    bottom: 250,
     right: 10,
     shadowColor: corEscuraPrincipal,
     shadowOffset: {
@@ -24,7 +20,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   icon: {
-    color: corBrancaPrincipal,
+    color: corEscuraPrincipal,
   },
 });
 

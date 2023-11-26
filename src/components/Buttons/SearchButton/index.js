@@ -1,5 +1,5 @@
 import { Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Fontisto';
 import styles from './styles';
 
 // https://oblador.github.io/react-native-vector-icons/
@@ -11,7 +11,7 @@ const SearchButton = (props) => {
     <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
       <Icon
         name='search'
-        size={28}
+        size={20}
         style={styles.icon}
       />
     </Pressable>

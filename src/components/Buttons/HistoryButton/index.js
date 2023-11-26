@@ -11,7 +11,7 @@ const HistoryButton = (props) => {
     <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
       <Icon
         name='favorite'
-        size={28}
+        size={20}
         style={styles.icon}
       />
     </Pressable>
