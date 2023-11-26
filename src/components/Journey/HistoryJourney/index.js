@@ -40,7 +40,7 @@ const HistoryJourney = (props) => {
               <>
                 <PreviousJourney journey={journey} setJourney={setJourney} modalVisible={modalVisible}/>
                 <View style={styles.buttonContainer}>
-                  <RestoreJourneyButton journey={journey}/>
+                  <RestoreJourneyButton journey={journey} setModalVisible={setModalVisible}/>
                   <DeleteJourneyButton setModalVisible={setOpenClearJourney} />
                 </View>
               </>
