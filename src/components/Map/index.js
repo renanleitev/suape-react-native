@@ -44,6 +44,13 @@ const Map = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    mapRef.current.fitToCoordinates(
+      finalCoordinates,
+      { animated: true }
+    );
+  }, [finalCoordinates]);
+
   return (
     <View style={styles.container}>
       <MapView

@@ -20,7 +20,7 @@ const Mapa = () => {
         modalVisible={searchCompanyVisible}
         setModalVisible={setSearchCompanyVisible}
       >
-        <SearchCompany />
+        <SearchCompany setSearchCompanyVisible={setSearchCompanyVisible} />
       </ModalBottom>
       <ModalBottom
         modalVisible={infoCompanyVisible}

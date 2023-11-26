@@ -9,7 +9,8 @@ import styles from './styles';
 import { useSortArrayByName } from '../../../hooks/use-sort-array';
 import { useState } from 'react';
 
-const SearchCompany = () => {
+const SearchCompany = (props) => {
+  const setSearchCompanyVisible = props.setSearchCompanyVisible;
   const [data, setData] = useState([]);
   const [type, setType] = useState('empresa');
   const sortedDataName = useSortArrayByName(data);
@@ -24,7 +25,7 @@ const SearchCompany = () => {
         <RemoveButton />
         <JourneyButton />
       </View>
-      <GoButton />
+      <GoButton setSearchCompanyVisible={setSearchCompanyVisible}/>
     </>
   );
 };

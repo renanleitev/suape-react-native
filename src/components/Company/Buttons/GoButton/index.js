@@ -5,7 +5,8 @@ import { addCoordinate, emptyCoordinates } from '../../../../redux/slices/coordi
 import { showToastError } from '../../../../services/showToasts';
 import styles from './styles';
 
-const GoButton = () => {
+const GoButton = (props) => {
+  const setSearchCompanyVisible = props.setSearchCompanyVisible;
   const dispatch = useDispatch();
   const journeys = useSelector((state) => state.journeys);
   const journeyError = 'O itinerário está vazio.';
@@ -13,6 +14,7 @@ const GoButton = () => {
     if (journeys.length > 0) {
       dispatch(emptyCoordinates());
       journeys.forEach((company) => dispatch(addCoordinate(company)));
+      setSearchCompanyVisible(false);
     } else {
       showToastError(journeyError);
     }
