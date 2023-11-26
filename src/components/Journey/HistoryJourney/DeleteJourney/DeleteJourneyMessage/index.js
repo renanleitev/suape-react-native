@@ -10,12 +10,10 @@ const DeleteJourneyMessage = (props) => {
   const setModalVisible = props.setModalVisible;
   const users = useSelector(state => state.users);
   const user = users[0];
-  const clearJourneySuccess = "Histórico de itinerario apagado com sucesso.";
   const clearJourneyWarning = "Apagar histórico de itinerário? Essa ação é irreversível.";
 
   const clearJourney = useCallback(async () => {
     await patchSaveJourney({...user, Journey: []});
-    showToastSuccess(clearJourneySuccess);
     setModalVisible(false);
   }, []);
 
