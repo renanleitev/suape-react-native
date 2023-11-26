@@ -5,6 +5,7 @@ import { loginUser } from '../../../services/loginUser';
 import { showToastSuccess, showToastError, showToastInfo } from '../../../services/showToasts';
 import { login } from '../../../redux/slices/usersSlice';
 import { useDispatch } from 'react-redux';
+import { MapaPage, CadastrarApagarPage } from '../../../constants';
 import styles from './styles';
 
 const Login = ({ navigation }) => {
@@ -21,7 +22,7 @@ const Login = ({ navigation }) => {
     const response = await loginUser(user);
     try {
       if (response.Email === user.Email && response.Password === user.Password) {
-        navigation.navigate('Mapa');
+        navigation.navigate(MapaPage);
         showToastSuccess(loginSuccess);
         dispatch(login(response));
       } else {
@@ -31,11 +32,8 @@ const Login = ({ navigation }) => {
       showToastError(loginError);
     }
   };
-  const onPressForgotPassword = () => {
-    navigation.navigate('Redefinir senha');
-  };
   const onPressSignUp = () => {
-    navigation.navigate('Cadastrar/Apagar conta');
+    navigation.navigate(CadastrarApagarPage);
   };
 
   return (
@@ -51,9 +49,6 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
           onChangeText={(text) => setUser({ ...user, Password: text })}
         />
-        <TouchableOpacity onPress={onPressForgotPassword}>
-          <Text style={styles.text}>Esqueceu a senha?</Text>
-        </TouchableOpacity>
         <TouchableOpacity onPress={onPressLogin} style={styles.loginBtn}>
           <Text style={styles.text}>LOGIN</Text>
         </TouchableOpacity>

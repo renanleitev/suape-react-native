@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { logout } from '../../../redux/slices/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { showToastSuccess } from '../../../services/showToasts';
+import { MapaPage } from '../../../constants';
 import styles from './styles';
 
 const Logout = ({ navigation }) => {
@@ -14,7 +15,7 @@ const Logout = ({ navigation }) => {
   const onLogout= () => {
     dispatch(logout());
     showToastSuccess(logoutSuccess);
-    navigation.navigate('Mapa');
+    navigation.navigate(MapaPage);
   };
 
   return (

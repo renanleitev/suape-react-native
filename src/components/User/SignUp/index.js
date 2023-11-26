@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { postUser } from '../../../services/postUser';
 import { login } from '../../../redux/slices/usersSlice';
 import setAdmin from '../../../services/setAdmin';
+import { MapaPage, LoginLogoutPage } from '../../../constants';
 import styles from './styles';
 
 const SignUp = ({ navigation }) => {
@@ -38,14 +39,14 @@ const SignUp = ({ navigation }) => {
       try {
         showToastSuccess(signUpSucesss);
         dispatch(login(response));
-        navigation.navigate('Mapa');
+        navigation.navigate(MapaPage);
       } catch (e) {
         showToastError(signUpError);
       }
     }
   });
   const onPressLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate(LoginLogoutPage);
   };
 
   return (

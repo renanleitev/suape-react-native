@@ -1,9 +1,10 @@
 import { View, Text, Pressable } from 'react-native';
+import { MapaPage } from '../../../constants';
 import styles from './styles';
 
 const NotAllowed = ({ navigation }) => {
   const handleNotAllowed = () => {
-    navigation.navigate('Mapa');
+    navigation.navigate(MapaPage);
   };
 
   return (

@@ -31,3 +31,11 @@ export const questionsAndAnswers = [
       'O site ainda está em desenvolvimento, mas futuramente será possível receber notificações sobre modificações no aplicativo. No estado atual, para dúvidas específicas, por favor, envie um email para o endereço de contato disponibilizado. Lembre-se de manter o aplicativo atualizado para acessar melhorias e correções.',
   },
 ];
+
+// Nome das Páginas
+export const MapaPage = "Mapa";
+export const LoginLogoutPage = "Login/Logout";
+export const CadastrarApagarPage = "Cadastrar/Apagar conta";
+export const PainelAdminPage = "Painel de Administração";
+export const AjudaPage = "Ajuda";
+export const SobrePage = "Sobre";

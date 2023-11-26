@@ -3,6 +3,7 @@ import { showToastSuccess } from '../../../services/showToasts';
 import CloseButton from '../../Buttons/CloseButton';
 import { logout } from '../../../redux/slices/usersSlice';
 import { useDispatch } from 'react-redux';
+import { MapaPage } from '../../../constants';
 import styles from './styles';
 
 const ConfirmDelete = (props) => {
@@ -17,7 +18,7 @@ const ConfirmDelete = (props) => {
   const onDeleteAccount = () => {
     showToastSuccess(deleteAccountSuccess);
     dispatch(logout());
-    navigation.navigate('Mapa');
+    navigation.navigate(MapaPage);
   };
 
   return (
