@@ -4,6 +4,7 @@ import CloseButton from '../../../../Buttons/CloseButton';
 import { showToastSuccess } from '../../../../../services/showToasts';
 import { useDispatch } from 'react-redux';
 import { emptyJourneys } from '../../../../../redux/slices/journeysSlice';
+import { emptyCoordinates } from '../../../../../redux/slices/coordinatesSlice';
 import styles from './styles';
 
 const ClearJourneyMessage = (props) => {
@@ -16,6 +17,7 @@ const ClearJourneyMessage = (props) => {
     showToastSuccess(clearJourneySuccess);
     setModalVisible(false);
     dispatch(emptyJourneys());
+    dispatch(emptyCoordinates());
   }, []);
 
   return (
