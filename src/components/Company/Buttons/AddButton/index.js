@@ -19,7 +19,7 @@ const AddButton = (props) => {
   const addSuccess = `${capitalizeFirstLetter(
     type
   )} adicionado(a) com sucesso.`;
-  const addError = `Não foi possível adicionar ${type}.`;
+  const addError = `Selecione antes de adicionar ${type}.`;
   const addLimit = 'Limite máximo de itinerário atingido.';
 
   const dispatch = useDispatch();

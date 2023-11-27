@@ -18,7 +18,7 @@ const RestoreJourneyButton = (props) => {
   const emptyJourneyError = 'Histórico de itinerário está vazio';
 
   const saveJourney = async () => {
-    if (journey) {
+    if (journey.length > 0) {
       showToastSuccess(restoreJourneySuccess);
       dispatch(emptyJourneys());
       dispatch(emptyCoordinates());
