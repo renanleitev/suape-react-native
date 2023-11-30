@@ -12,8 +12,15 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inputText: {
+    width: 200,
     height: 50,
     color: corBrancaPrincipal,
+  },
+  icon: {
+    color: corBrancaPrincipal,
+    position: 'absolute',
+    marginLeft: 240,
+    bottom: 15,
   },
 });
 
