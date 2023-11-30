@@ -61,11 +61,11 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setUser({ ...user, Name: text })}
         />
         <InputText
-          placeholder="Username"
+          placeholder="Nome de usuário"
           onChangeText={(text) => setUser({ ...user, Username: text })}
         />
         <InputText
-          placeholder="Email"
+          placeholder="Email (e.g. user@email.com)"
           onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText

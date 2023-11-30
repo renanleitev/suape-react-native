@@ -51,7 +51,7 @@ const Login = ({ navigation }) => {
       <Text style={styles.title}>{loginTitle}</Text>
       <ScrollView>
         <InputText
-          placeholder="Email"
+          placeholder="Email (e.g. user@email.com)"
           onChangeText={(text) => setUser({ ...user, Email: text })}
         />
         <InputText

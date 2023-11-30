@@ -92,12 +92,12 @@ const ConfigUser = (props) => {
         onChangeText={(text) => setCompany({ ...user, Name: text })}
       />
       <InputText
-        placeholder="Username"
+        placeholder="Nome de usuário"
         defaultValue={data?.Username}
         onChangeText={(text) => setCompany({ ...user, Username: text })}
       />
       <InputText
-        placeholder="Email"
+        placeholder="Email (e.g. user@email.com)"
         defaultValue={data?.Email}
         onChangeText={(text) => setCompany({ ...user, Email: text })}
       />
