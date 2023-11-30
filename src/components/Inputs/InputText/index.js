@@ -26,13 +26,12 @@ const InputText = (props) => {
       />
       {secureTextEntry && (
         <View>
-
-        <Icon
-          name={showPassword ? 'eye' : 'eye-slash'}
-          size={20}
-          style={styles.icon}
-          onPress={onShowPassword}
-        />
+          <Icon
+            name={showPassword ? 'eye' : 'eye-slash'}
+            size={20}
+            style={styles.icon}
+            onPress={onShowPassword}
+          />
         </View>
       )}
     </View>
