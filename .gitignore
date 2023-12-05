@@ -36,4 +36,4 @@ yarn-error.*
 *.tsbuildinfo
 
 # api_key
-apiKey.js
+# apiKey.js
