@@ -48,3 +48,4 @@ Para construir as rotas no mapa, é necessário seguir os seguintes passos:
 4. Renan Leite
 5. Rian Vinícius
 6. Robério José
+7. Hugo Davi
