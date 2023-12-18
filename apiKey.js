@@ -1,2 +1,3 @@
-export const GOOGLE_MAPS_APIKEY = "AIzaSyApPSRTD4mEyctS01B5qzvygptf2sSuax0";
+// You need to changed it to your's GOOGLE_API_KEY
+export const GOOGLE_MAPS_APIKEY = "GOOGLE_API_KEY";
 
